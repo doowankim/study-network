@@ -1,13 +1,58 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
+import { logoutUser } from "../actions/authActions";
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class Navbar extends Component {
+
+    onLogoutClick(e) {
+        this.props.logoutUser();
+    }
     render() {
+        const { isAuthenticated, user } = this.props.auth;
+
+        const authLinks = (
+            <ul className="navbar-nav ml-auto">
+                <li className="nav-item">
+                    <a
+                        href=""
+                        onClick={this.onLogoutClick.bind(this)}
+                        className="nav-link"
+                    >
+                        <img
+                            className="rounded-circle"
+                            src={user.avatar}
+                            alt={user.name}
+                            style={{ width: '25px', marginRight: '5px' }}
+                            title="You must have a Gravatar connected to your email to display an image"
+                        />{' '}
+                        로그아웃
+                    </a>
+                </li>
+            </ul>
+        );
+
+        const guestLinks = (
+            <ul className="navbar-nav mr-auto">
+                <li className="nav-item">
+                    <Link className="nav-link" to="register">
+                        회원가입
+                    </Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to="login">
+                        로그인
+                    </Link>
+                </li>
+            </ul>
+        );
         return (
             <nav className="navbar navbar-expand-sm mb-4">
                 <div className="container">
-                    <a className="navbar-brand" href="landing">
+                    <Link className="navbar-brand" to="landing">
                         Study-Platform
-                    </a>
+                    </Link>
                     <button
                         className="navbar-toggler"
                         type="button"
@@ -18,16 +63,7 @@ class Navbar extends Component {
                     </button>
                     <div>
                         <ul className="navbar-nav mr-auto">
-                            <li className="nav-item">
-                                <a className="nav-link" href="register">
-                                    회원가입
-                                </a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="login">
-                                    로그인
-                                </a>
-                            </li>
+                            {isAuthenticated ? authLinks : guestLinks}
                         </ul>
                     </div>
                 </div>
@@ -36,4 +72,13 @@ class Navbar extends Component {
     }
 }
 
-export default Navbar;
+Navbar.propTypes = {
+    logoutUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+    auth: state.auth
+});
+
+export default connect(mapStateToProps, { logoutUser })(Navbar);
