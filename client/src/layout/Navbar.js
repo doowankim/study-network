@@ -50,7 +50,7 @@ class Navbar extends Component {
         return (
             <nav className="navbar navbar-expand-sm mb-4">
                 <div className="container">
-                    <Link className="navbar-brand" to="landing">
+                    <Link className="navbar-brand" to="dashboard">
                         Study-Platform
                     </Link>
                     <button
