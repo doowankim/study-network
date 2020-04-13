@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   padding-top: 30px;
@@ -35,11 +36,32 @@ const SubTitle = styled.div`
 
 const Title = styled.title`
   font-size: 24px;
-  font-weight: 100;
+  font-weight: 300;
   display: block;
   line-height: 1.2;
   text-align: center;
   margin: 0 0 5px;
+`;
+
+const SLink = styled(Link)`
+  font-size: 16px;
+  color: #fff;
+  vertical-align: middle;
+  line-height: 150%;
+  text-align: center;
+  padding: 22px 28px;
+  margin: auto;
+  display: inline-block;
+  border-radius: 35px;
+  background-color: #455dff;
+  font-weight: 600;
+  overflow-x: hidden;
+  transition: all .25s ease-in-out;
+`;
+
+const Icon = styled.i`
+  margin-right: 5px;
+  margin-top: 3px;
 `;
 
 class Dashboard extends Component {
@@ -53,6 +75,12 @@ class Dashboard extends Component {
                     <SubTitle>
                         어디 지역이든 스터디를 만들고 진행해보세요.
                     </SubTitle>
+                </section>
+                <section>
+                    <SLink>
+                        <Icon className="fas fa-pencil-alt"></Icon>
+                        스터디 글쓰기
+                    </SLink>
                 </section>
                 <section>
                     <Title>나에게 맞는 스터디 둘러보기</Title>
