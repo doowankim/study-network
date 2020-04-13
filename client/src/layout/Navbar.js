@@ -6,7 +6,7 @@ class Navbar extends Component {
             <nav className="navbar navbar-expand-sm mb-4">
                 <div className="container">
                     <a className="navbar-brand" href="landing">
-                        LOGO
+                        Study-Platform
                     </a>
                     <button
                         className="navbar-toggler"
