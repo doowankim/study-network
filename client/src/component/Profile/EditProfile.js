@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import styled from "styled-components";
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { deleteAccount } from "../../actions/profileActions";
 
 const Container = styled.div`
   margin: 8px auto;
@@ -22,7 +23,12 @@ const Admin = styled.div`
   font-weight: bold;
 `;
 
-class Profile extends Component {
+class EditProfile extends Component {
+
+    onDeleteClick(e) {
+        this.props.deleteAccount();
+    }
+
     render() {
         const { user } = this.props.auth;
         return (
@@ -45,13 +51,20 @@ class Profile extends Component {
                 </Admin>
                 <div>개인정보 변경</div>
                 <div>비밀번호 변경</div>
-                <div>회원 탈퇴</div>
+                <div>
+                    <button
+                        onClick={this.onDeleteClick.bind(this)}
+                        className="btn btn-danger"
+                    >
+                        회원 탈퇴
+                    </button>
+                </div>
             </Container>
         );
     }
 }
 
-Profile.propTypes = {
+EditProfile.propTypes = {
     auth: PropTypes.object.isRequired
 }
 
@@ -59,4 +72,4 @@ const mapStateToProps = state => ({
     auth: state.auth
 })
 
-export default connect(mapStateToProps)(Profile);
+export default connect(mapStateToProps, {deleteAccount})(EditProfile);

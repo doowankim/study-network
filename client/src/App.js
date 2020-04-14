@@ -12,7 +12,7 @@ import Navbar from "./component/layout/Navbar";
 import Register from "./component/auth/Register";
 import Login from "./component/auth/Login";
 import Dashboard from "./component/Dashboard";
-import Profile from "./component/Profile";
+import Profile from "./component/Profile/EditProfile";
 import PrivateRoute from "./component/common/PrivateRoute";
 import Write from "./component/Write";
 
