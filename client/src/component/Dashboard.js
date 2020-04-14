@@ -77,7 +77,7 @@ class Dashboard extends Component {
                     </SubTitle>
                 </section>
                 <section>
-                    <SLink>
+                    <SLink to="/write">
                         <Icon className="fas fa-pencil-alt"></Icon>
                         스터디 글쓰기
                     </SLink>

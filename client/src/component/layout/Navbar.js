@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
-import { logoutUser } from "../actions/authActions";
+import { logoutUser } from "../../actions/authActions";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from "styled-components";
@@ -23,7 +23,7 @@ class Navbar extends Component {
                 <li className="nav-item text-center">
                     <Container>
                         <a
-                            href=""
+                            href="/profile"
                             className="nav-link"
                             style={{ display: 'flex' }}
                         >

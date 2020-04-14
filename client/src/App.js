@@ -1,17 +1,20 @@
 import React, {Component} from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from "./store";
 import jwt_decode from 'jwt-decode';
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 
-import Landing from "./layout/Landing";
-import Footer from "./layout/Footer";
-import Navbar from "./layout/Navbar";
-import Register from "./auth/Register";
-import Login from "./auth/Login";
+import Landing from "./component/layout/Landing";
+import Footer from "./component/layout/Footer";
+import Navbar from "./component/layout/Navbar";
+import Register from "./component/auth/Register";
+import Login from "./component/auth/Login";
 import Dashboard from "./component/Dashboard";
+import Profile from "./component/Profile";
+import PrivateRoute from "./component/common/PrivateRoute";
+import Write from "./component/Write";
 
 if (localStorage.jwtToken) {
     setAuthToken(localStorage.jwtToken);
@@ -40,6 +43,20 @@ class App extends Component {
                             <Route exact path="/register" component={Register} />
                             <Route exact path="/login" component={Login} />
                             <Route exact path="/dashboard" component={Dashboard} />
+                            <Switch>
+                                <PrivateRoute
+                                    exact
+                                    path="/profile"
+                                    component={Profile}
+                                />
+                            </Switch>
+                            <Switch>
+                                <PrivateRoute
+                                    exact
+                                    path="/write"
+                                    component={Write}
+                                />
+                            </Switch>
                         </div>
                         <Footer />
                     </div>
