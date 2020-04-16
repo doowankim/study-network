@@ -12,9 +12,11 @@ import Navbar from "./component/layout/Navbar";
 import Register from "./component/auth/Register";
 import Login from "./component/auth/Login";
 import Dashboard from "./component/Dashboard";
-import Profile from "./component/Profile/EditProfile";
+import Profile from "./component/Profile/Profile";
 import PrivateRoute from "./component/common/PrivateRoute";
 import Write from "./component/Write";
+import EditPassword from "./component/Profile/EditPassword";
+import EditProfile from "./component/Profile/EditProfile";
 
 if (localStorage.jwtToken) {
     setAuthToken(localStorage.jwtToken);
@@ -55,6 +57,20 @@ class App extends Component {
                                     exact
                                     path="/write"
                                     component={Write}
+                                />
+                            </Switch>
+                            <Switch>
+                                <PrivateRoute
+                                    exact
+                                    path="/editprofile"
+                                    component={EditProfile}
+                                />
+                            </Switch>
+                            <Switch>
+                                <PrivateRoute
+                                    exact
+                                    path="/editpassword"
+                                    component={EditPassword}
                                 />
                             </Switch>
                         </div>

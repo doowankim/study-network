@@ -76,7 +76,7 @@ router.post('/login', (req, res) => {
                     .then(isMatch => {
                         if(isMatch) {
                             //token에 들어갈 내용 상수화
-                            const payload = { id: user.id, name: user.name, avatar: user.avatar };
+                            const payload = { id: user.id, name: user.name, email: user.email, avatar: user.avatar };
                             //token 생성
                             jwt.sign(
                                 payload,

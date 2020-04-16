@@ -8,6 +8,7 @@ dotenv.config();
 
 const userRoutes = require('./routes/api/users');
 const profileRoutes = require('./routes/api/profile');
+const postRoutes = require('./routes/api/posts');
 
 const app = express();
 
@@ -27,6 +28,7 @@ require('./config/passport')(passport);
 
 app.use('/users', userRoutes);
 app.use('/profile', profileRoutes);
+app.use('/posts', postRoutes);
 
 const port = process.env.PORT || 3030;
 app.listen(port, console.log(`Server running on port ${port}`));
