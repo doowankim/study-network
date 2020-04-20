@@ -23,21 +23,6 @@ const Admin = styled.div`
   font-weight: bold;
 `;
 
-const Item = styled.ol`
-  display: block;
-  margin-block-start: 5px;
-  margin-block-end: 5px;
-  margin-inline-start: 1px;
-  margin-inline-end: 1px;
-  padding-inline-start: 40px;
-`;
-
-const List = styled.li`
-  //display: list-item;
-  //text-align: -webkit-match-parent;
-  padding-top: 5px;
-`;
-
 class Profile extends Component {
 
     onDeleteClick(e) {
@@ -64,22 +49,28 @@ class Profile extends Component {
                 <Admin>
                     <div>스터디플랫폼 계정</div>
                 </Admin>
-                <Item>
-                    <List>
-                        <Link to='/editprofile'>개인정보 변경</Link>
-                    </List>
-                    <List>
-                        <Link to='/editpassword'>비밀번호 변경</Link>
-                    </List>
-                    <List>
+                <table>
+                    <thead>
+                        <tr>
+                            <li>
+                                <Link to='/editprofile'>개인정보 변경</Link>
+                            </li>
+                        </tr>
+                        <tr>
+                            <li>
+                                <Link to='/editpassword'>비밀번호 변경</Link>
+                            </li>
+                        </tr>
+                    </thead>
+                    <li>
                         <button
                             onClick={this.onDeleteClick.bind(this)}
                             className="btn btn-danger"
                         >
                             회원 탈퇴
                         </button>
-                    </List>
-                </Item>
+                    </li>
+                </table>
             </Container>
         );
     }
