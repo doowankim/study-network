@@ -4,7 +4,7 @@ const postModel = require('../../model/posting');
 const passport = require('passport');
 const authCheck = passport.authenticate('jwt', { session: false });
 
-// @route POST localhost:3200/posts
+// @route POST localhost:3040/posts
 // @desc Tests posts route
 // @access Private
 router.post('/', authCheck, (req, res) => {
