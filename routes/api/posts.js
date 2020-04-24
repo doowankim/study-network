@@ -13,6 +13,7 @@ router.post('/', authCheck, (req, res) => {
         title: req.body.title,
         text: req.body.text,
         name: req.user.name,
+        area: req.body.area,
         avatar: req.user.avatar,
         user: req.user.id
     });

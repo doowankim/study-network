@@ -15,6 +15,9 @@ const postingSchema = mongoose.Schema({
     name: {
         type: String
     },
+    area: {
+        type: String
+    },
     avatar: {
         type: String
     },

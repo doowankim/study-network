@@ -14,9 +14,9 @@ import Login from "./component/auth/Login";
 import Dashboard from "./component/Dashboard";
 import Profile from "./component/Profile/Profile";
 import PrivateRoute from "./component/common/PrivateRoute";
-import Board from "./component/board/Board";
-import EditPassword from "./component/Profile/EditPassword";
+import Write from "./component/board/Write";
 import EditProfile from "./component/Profile/EditProfile";
+import MyBoard from "./component/board/MyBoard";
 
 if (localStorage.jwtToken) {
     setAuthToken(localStorage.jwtToken);
@@ -56,7 +56,7 @@ class App extends Component {
                                 <PrivateRoute
                                     exact
                                     path="/board"
-                                    component={Board}
+                                    component={Write}
                                 />
                             </Switch>
                             <Switch>
@@ -69,8 +69,8 @@ class App extends Component {
                             <Switch>
                                 <PrivateRoute
                                     exact
-                                    path="/editpassword"
-                                    component={EditPassword}
+                                    path="/myboard"
+                                    component={MyBoard}
                                 />
                             </Switch>
                         </div>

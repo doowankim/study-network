@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 
-class EditPassword extends Component {
+class MyBoard extends Component {
     render() {
         return (
             <div>
-                비밀번호 변경 페이지
+                내가 쓴 글 보기
             </div>
         );
     }
 }
 
-export default EditPassword;
+export default MyBoard;

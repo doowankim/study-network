@@ -39,7 +39,7 @@ const _Input = styled.input`
   border-image: initial;
 `;
 
-class Board extends Component {
+class Write extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -67,9 +67,33 @@ class Board extends Component {
     render() {
         return (
             <div>
-                <Link to="/dashboard">
-                    <button type="button" className="btn btn-primary">나가기</button>
-                </Link>
+                <div className="dropdown">
+                    <button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        지역 선택
+                    </button>
+                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a className="dropdown-item" href="#">서울</a>
+                        <div className="dropdown-divider"></div>
+                        <a className="dropdown-item" href="#">경기</a>
+                        <div className="dropdown-divider"></div>
+                        <a className="dropdown-item" href="#">강원</a>
+                        <div className="dropdown-divider"></div>
+                        <a className="dropdown-item" href="#">충북</a>
+                        <div className="dropdown-divider"></div>
+                        <a className="dropdown-item" href="#">충남</a>
+                        <div className="dropdown-divider"></div>
+                        <a className="dropdown-item" href="#">경북</a>
+                        <div className="dropdown-divider"></div>
+                        <a className="dropdown-item" href="#">경남</a>
+                        <div className="dropdown-divider"></div>
+                        <a className="dropdown-item" href="#">전북</a>
+                        <div className="dropdown-divider"></div>
+                        <a className="dropdown-item" href="#">전남</a>
+                        <div className="dropdown-divider"></div>
+                        <a className="dropdown-item" href="#">제주</a>
+                    </div>
+                </div>
                 <Form onSubmit={this.onSubmit}>
                     <Input
                         name="title"
@@ -90,4 +114,4 @@ class Board extends Component {
     }
 }
 
-export default Board;
+export default Write;
