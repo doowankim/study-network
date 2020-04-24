@@ -14,7 +14,7 @@ import Login from "./component/auth/Login";
 import Dashboard from "./component/Dashboard";
 import Profile from "./component/Profile/Profile";
 import PrivateRoute from "./component/common/PrivateRoute";
-import Write from "./component/Write";
+import Board from "./component/board/Board";
 import EditPassword from "./component/Profile/EditPassword";
 import EditProfile from "./component/Profile/EditProfile";
 
@@ -55,8 +55,8 @@ class App extends Component {
                             <Switch>
                                 <PrivateRoute
                                     exact
-                                    path="/write"
-                                    component={Write}
+                                    path="/board"
+                                    component={Board}
                                 />
                             </Switch>
                             <Switch>

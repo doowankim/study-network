@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import styled from "styled-components";
 import { Link } from 'react-router-dom';
+import BoardItems from "./board/BoardItems";
 
 const Container = styled.div`
   padding-top: 30px;
@@ -77,13 +78,14 @@ class Dashboard extends Component {
                     </SubTitle>
                 </section>
                 <section>
-                    <SLink to="/write">
+                    <SLink to="/board">
                         <Icon className="fas fa-pencil-alt"></Icon>
                         스터디 글쓰기
                     </SLink>
                 </section>
                 <section>
                     <Title>나에게 맞는 스터디 둘러보기</Title>
+                    <BoardItems />
                 </section>
             </Container>
 

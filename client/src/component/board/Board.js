@@ -39,7 +39,7 @@ const _Input = styled.input`
   border-image: initial;
 `;
 
-class Write extends Component {
+class Board extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -90,4 +90,4 @@ class Write extends Component {
     }
 }
 
-export default Write;
+export default Board;
