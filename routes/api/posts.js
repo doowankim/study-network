@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const postModel = require('../../model/posting');
+const postModel = require('../../model/post');
 const passport = require('passport');
 const authCheck = passport.authenticate('jwt', { session: false });
 
@@ -24,7 +24,7 @@ router.post('/', authCheck, (req, res) => {
         .catch(err => res.json(err));
 });
 
-// @route GET localhost:3040/posts/total
+// @route GET localhost:3040/post/total
 // @desc get posts
 // @access Private & Public
 router.get('/total', (req, res) => {
@@ -40,7 +40,7 @@ router.get('/total', (req, res) => {
         .catch(err => res.json(err));
 });
 
-// @route GET localhost:3040/posts/:postId
+// @route GET localhost:3040/post/:postId
 // @desc get detail posts
 // @access Private
 router.get('/:postId', authCheck, (req, res) => {

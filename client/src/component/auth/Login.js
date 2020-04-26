@@ -51,19 +51,10 @@ class Login extends Component {
         this.props.loginUser(userData)
     }
 
-    openModal = () => {
-        this.setState({ isModalOpen: true })
-    }
-
-    closeModal = () => {
-        this.setState({ isModalOpen: false })
-    }
-
     render() {
         const { errors } = this.state;
-        const { isOpen, isClose } = this.props;
         return (
-            <div className="login" onClick={isClose}>
+            <div className="login">
                 <div className="container">
                     <div className="row">
                         <div className="col-md-8 m-auto">

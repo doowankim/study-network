@@ -20,6 +20,7 @@ const Input = styled.input`
   border-style: none;
   border-color: initial;
   border-image: initial;
+  border-bottom: 1px solid #f2f2f2;
 `;
 
 const _Input = styled.input`
@@ -35,13 +36,13 @@ const _Input = styled.input`
   outline: none;
   border-width: initial;
   border-style: none;
-  border-color: initial;
-  border-image: initial;
+  //border-color: initial;
+  //border-image: initial;
 `;
 
 class Write extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
             title: '',
             text: ''
@@ -73,42 +74,44 @@ class Write extends Component {
                         지역 선택
                     </button>
                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a className="dropdown-item" href="#">서울</a>
+                        <a className="dropdown-item">서울</a>
                         <div className="dropdown-divider"></div>
-                        <a className="dropdown-item" href="#">경기</a>
+                        <a className="dropdown-item">경기</a>
                         <div className="dropdown-divider"></div>
-                        <a className="dropdown-item" href="#">강원</a>
+                        <a className="dropdown-item">강원</a>
                         <div className="dropdown-divider"></div>
-                        <a className="dropdown-item" href="#">충북</a>
+                        <a className="dropdown-item">충북</a>
                         <div className="dropdown-divider"></div>
-                        <a className="dropdown-item" href="#">충남</a>
+                        <a className="dropdown-item">충남</a>
                         <div className="dropdown-divider"></div>
-                        <a className="dropdown-item" href="#">경북</a>
+                        <a className="dropdown-item">경북</a>
                         <div className="dropdown-divider"></div>
-                        <a className="dropdown-item" href="#">경남</a>
+                        <a className="dropdown-item">경남</a>
                         <div className="dropdown-divider"></div>
-                        <a className="dropdown-item" href="#">전북</a>
+                        <a className="dropdown-item">전북</a>
                         <div className="dropdown-divider"></div>
-                        <a className="dropdown-item" href="#">전남</a>
+                        <a className="dropdown-item">전남</a>
                         <div className="dropdown-divider"></div>
-                        <a className="dropdown-item" href="#">제주</a>
+                        <a className="dropdown-item">제주</a>
                     </div>
                 </div>
-                <Form onSubmit={this.onSubmit}>
+                <form onSubmit={this.onSubmit}>
                     <Input
                         name="title"
                         placeholder="제목을 입력하세요"
                         onChange={this.onChange}
+                        value={this.state.title}
                     />
                     <_Input
                         name="text"
                         placeholder="자유롭게 작성해보세요"
                         onChange={this.onChange}
+                        value={this.state.text}
                     />
                     <div>
-                        <button type="button" className="btn btn-primary">글 등록하기</button>
+                        <button type="submit" className="btn btn-primary">글 등록하기</button>
                     </div>
-                </Form>
+                </form>
             </div>
         );
     }

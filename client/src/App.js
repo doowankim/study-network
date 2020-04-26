@@ -6,7 +6,6 @@ import jwt_decode from 'jwt-decode';
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 
-import Landing from "./component/layout/Landing";
 import Footer from "./component/layout/Footer";
 import Navbar from "./component/layout/Navbar";
 import Register from "./component/auth/Register";
@@ -40,7 +39,6 @@ class App extends Component {
                 <Router>
                     <div className="App">
                         <Navbar />
-                        <Route exact path="/landing" component={Landing} />
                         <div className="container">
                             <Route exact path="/register" component={Register} />
                             <Route exact path="/login" component={Login} />
