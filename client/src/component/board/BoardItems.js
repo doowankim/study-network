@@ -2,6 +2,11 @@ import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Moment from "react-moment";
+import styled from "styled-components";
+
+const Tr = styled.tr`
+  cursor: pointer;
+`;
 
 class BoardItems extends Component {
 
@@ -32,7 +37,7 @@ class BoardItems extends Component {
                         <table className="table table-hover">
                             <tbody>
                             {results.map(result =>
-                                <tr>
+                                <Tr>
                                     <th scope="row">스터디</th>
                                     <td>{result.name}</td>
                                     <td>
@@ -45,7 +50,7 @@ class BoardItems extends Component {
                                             {result.date.substring(0, 10)}
                                         </Moment>
                                     </td>
-                                </tr>
+                                </Tr>
                             )}
                             </tbody>
                         </table>
