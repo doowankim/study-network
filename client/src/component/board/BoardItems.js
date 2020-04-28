@@ -31,7 +31,7 @@ class BoardItems extends Component {
         console.log(results);
 
         return (
-            <div className="BBS">
+            <div className="board">
                 <div className="container">
                     <div className="row">
                         <table className="table table-hover">
@@ -40,11 +40,7 @@ class BoardItems extends Component {
                                 <Tr>
                                     <th scope="row">스터디</th>
                                     <td>{result.name}</td>
-                                    <td>
-                                        <Link to="/detail">
-                                            {result.title}
-                                        </Link>
-                                    </td>
+                                    <td>{result.title}</td>
                                     <td>
                                         <Moment format="YYYY년 MM월 DD일">
                                             {result.date.substring(0, 10)}

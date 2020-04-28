@@ -1,6 +1,103 @@
 import React, {Component} from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import styled from "styled-components";
+
+import SelectListGroup from "../common/SelectListGroup";
+
+import { createPost } from "../../actions/postActions";
+
+class Write extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            title: '',
+            text: '',
+            errors: {}
+        }
+        this.onChange = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    onChange(e) {
+        this.setState({ [e.target.name]: e.target.value })
+    }
+
+    onSubmit(e) {
+        e.preventDefault();
+
+        const postData = {
+            title: this.state.title,
+            text: this.state.text
+        };
+        this.props.createPost(postData, this.props.history);
+        console.log(postData);
+    }
+
+    render() {
+        const { errors } = this.state;
+
+        // const options = [
+        //     { label: '* 스터디를 진행할 지역을 선택하세요', value: 0 },
+        //     { label: '서울', value: '서울' },
+        //     { label: '경기', value: '경기' },
+        //     { label: '강원', value: '강원' },
+        //     { label: '충북', value: '충북' },
+        //     { label: '충남', value: '충남' },
+        //     { label: '경북', value: '경북' },
+        //     { label: '경남', value: '경남' },
+        //     { label: '전북', value: '전북' },
+        //     { label: '전남', value: '전남' },
+        //     { label: '제주', value: '제주' },
+        // ]
+        return (
+            <div>
+                {/*<div className="dropdown">*/}
+                {/*    <button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"*/}
+                {/*            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">*/}
+                {/*        지역 선택*/}
+                {/*    </button>*/}
+                {/*    <select*/}
+                {/*        value={this.state.area}*/}
+                {/*        onChange={this.onChange}*/}
+                {/*        name="area"*/}
+                {/*        options={options.map(_option =>*/}
+                {/*            <option key={_option.label} value={_option.value}>*/}
+                {/*                {_option.label}*/}
+                {/*            </option>*/}
+                {/*        )}*/}
+                {/*    />*/}
+                {/*</div>*/}
+                <form onSubmit={this.onSubmit}>
+                    <Input
+                        name="title"
+                        placeholder="제목을 입력하세요"
+                        onChange={this.onChange}
+                        value={this.state.title}
+                        error={errors.title}
+                    />
+                    {errors.title && (
+                        <div className="invalid-feedback">{errors.title}</div>
+                    )}
+                    <_Input
+                        name="text"
+                        placeholder="자유롭게 작성해보세요"
+                        onChange={this.onChange}
+                        value={this.state.text}
+                        error={errors.text}
+                    />
+                    {errors.text && (
+                        <div className="invalid-feedback">{errors.text}</div>
+                    )}
+                    <div>
+                        <button type="submit" className="btn btn-primary">글 등록하기</button>
+                    </div>
+                </form>
+            </div>
+        );
+    }
+}
 
 const Form = styled.form`
   //margin-left: 230px;
@@ -36,85 +133,18 @@ const _Input = styled.input`
   outline: none;
   border-width: initial;
   border-style: none;
-  //border-color: initial;
-  //border-image: initial;
 `;
 
-class Write extends Component {
-    constructor() {
-        super();
-        this.state = {
-            title: '',
-            text: ''
-        }
-        this.onChange = this.onChange.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
-    }
-
-    onChange(e) {
-        this.setState({ [e.target.name]: e.target.value })
-    }
-
-    onSubmit(e) {
-        e.preventDefault();
-
-        const postData = {
-            title: this.state.title,
-            text: this.state.text
-        };
-        console.log(postData);
-    }
-
-    render() {
-        return (
-            <div>
-                <div className="dropdown">
-                    <button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        지역 선택
-                    </button>
-                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a className="dropdown-item">서울</a>
-                        <div className="dropdown-divider"></div>
-                        <a className="dropdown-item">경기</a>
-                        <div className="dropdown-divider"></div>
-                        <a className="dropdown-item">강원</a>
-                        <div className="dropdown-divider"></div>
-                        <a className="dropdown-item">충북</a>
-                        <div className="dropdown-divider"></div>
-                        <a className="dropdown-item">충남</a>
-                        <div className="dropdown-divider"></div>
-                        <a className="dropdown-item">경북</a>
-                        <div className="dropdown-divider"></div>
-                        <a className="dropdown-item">경남</a>
-                        <div className="dropdown-divider"></div>
-                        <a className="dropdown-item">전북</a>
-                        <div className="dropdown-divider"></div>
-                        <a className="dropdown-item">전남</a>
-                        <div className="dropdown-divider"></div>
-                        <a className="dropdown-item">제주</a>
-                    </div>
-                </div>
-                <form onSubmit={this.onSubmit}>
-                    <Input
-                        name="title"
-                        placeholder="제목을 입력하세요"
-                        onChange={this.onChange}
-                        value={this.state.title}
-                    />
-                    <_Input
-                        name="text"
-                        placeholder="자유롭게 작성해보세요"
-                        onChange={this.onChange}
-                        value={this.state.text}
-                    />
-                    <div>
-                        <button type="submit" className="btn btn-primary">글 등록하기</button>
-                    </div>
-                </form>
-            </div>
-        );
-    }
+Write.propTypes = {
+    posts: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
 }
 
-export default Write;
+const mapStateToProps = state => ({
+    posts: state.posts,
+    errors: state.errors
+});
+
+export default connect(mapStateToProps, { createPost })(
+    withRouter(Write)
+);

@@ -1,4 +1,3 @@
-import { GET_ERRORS, POST_LOADING } from './type';
 import axios from 'axios';
 import {
     GET_POST,
