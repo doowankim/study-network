@@ -16,9 +16,6 @@ class Profile extends Component {
         return (
             <Body>
                 <Container>
-                    {/*<Button>*/}
-                    {/*    <button type="button" className="btn btn-primary">나가기</button>*/}
-                    {/*</Button>*/}
                     <Profiles>
                         <div>
                             <img

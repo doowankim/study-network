@@ -1,11 +1,10 @@
 import {
-    GET_POST,
     POST_LOADING,
-    CLEAR_CURRENT_POST
+    CLEAR_CURRENT_POST,
+    GET_POSTS
 } from "../actions/type";
 
 const initialState = {
-    post: null,
     posts: null,
     loading: false
 };
@@ -17,16 +16,16 @@ export default function (state = initialState, action) {
                 ...state,
                 loading: true
             };
-        case GET_POST:
+        case GET_POSTS:
             return {
                 ...state,
                 posts: action.payload,
                 loading: false
-            };
+            }
         case CLEAR_CURRENT_POST:
             return {
                 ...state,
-                posts: null
+                post: null
             };
         default:
             return state;

@@ -13,9 +13,10 @@ import Login from "./component/auth/Login";
 import Dashboard from "./component/Dashboard";
 import Profile from "./component/Profile/Profile";
 import PrivateRoute from "./component/common/PrivateRoute";
-import Write from "./component/board/Write";
+import Write from "./component/board/BoardForm";
 import EditProfile from "./component/Profile/EditProfile";
-import MyBoard from "./component/board/MyBoard";
+import BoardDetail from "./component/board/BoardDetail";
+import PostModal from "./component/modal/PostModal";
 
 if (localStorage.jwtToken) {
     setAuthToken(localStorage.jwtToken);
@@ -40,9 +41,9 @@ class App extends Component {
                     <div className="App">
                         <Navbar />
                         <div className="container">
+                            <Route exact path="/dashboard" component={Dashboard} />
                             <Route exact path="/register" component={Register} />
                             <Route exact path="/login" component={Login} />
-                            <Route exact path="/dashboard" component={Dashboard} />
                             <Switch>
                                 <PrivateRoute
                                     exact
@@ -67,8 +68,15 @@ class App extends Component {
                             <Switch>
                                 <PrivateRoute
                                     exact
-                                    path="/myboard"
-                                    component={MyBoard}
+                                    path="/boarddetail"
+                                    component={BoardDetail}
+                                />
+                            </Switch>
+                            <Switch>
+                                <PrivateRoute
+                                    exact
+                                    path="/postmodal"
+                                    component={PostModal}
                                 />
                             </Switch>
                         </div>

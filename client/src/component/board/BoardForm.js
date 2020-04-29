@@ -4,11 +4,9 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import styled from "styled-components";
 
-import SelectListGroup from "../common/SelectListGroup";
-
 import { createPost } from "../../actions/postActions";
 
-class Write extends Component {
+class BoardForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -38,37 +36,8 @@ class Write extends Component {
     render() {
         const { errors } = this.state;
 
-        // const options = [
-        //     { label: '* 스터디를 진행할 지역을 선택하세요', value: 0 },
-        //     { label: '서울', value: '서울' },
-        //     { label: '경기', value: '경기' },
-        //     { label: '강원', value: '강원' },
-        //     { label: '충북', value: '충북' },
-        //     { label: '충남', value: '충남' },
-        //     { label: '경북', value: '경북' },
-        //     { label: '경남', value: '경남' },
-        //     { label: '전북', value: '전북' },
-        //     { label: '전남', value: '전남' },
-        //     { label: '제주', value: '제주' },
-        // ]
         return (
             <div>
-                {/*<div className="dropdown">*/}
-                {/*    <button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"*/}
-                {/*            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">*/}
-                {/*        지역 선택*/}
-                {/*    </button>*/}
-                {/*    <select*/}
-                {/*        value={this.state.area}*/}
-                {/*        onChange={this.onChange}*/}
-                {/*        name="area"*/}
-                {/*        options={options.map(_option =>*/}
-                {/*            <option key={_option.label} value={_option.value}>*/}
-                {/*                {_option.label}*/}
-                {/*            </option>*/}
-                {/*        )}*/}
-                {/*    />*/}
-                {/*</div>*/}
                 <form onSubmit={this.onSubmit}>
                     <Input
                         name="title"
@@ -135,7 +104,7 @@ const _Input = styled.input`
   border-style: none;
 `;
 
-Write.propTypes = {
+BoardForm.propTypes = {
     posts: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired
 }
@@ -146,5 +115,5 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, { createPost })(
-    withRouter(Write)
+    withRouter(BoardForm)
 );

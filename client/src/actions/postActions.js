@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {
-    GET_POST,
+    GET_POSTS,
     GET_ERRORS,
     CLEAR_CURRENT_POST,
     POST_LOADING
@@ -24,20 +24,26 @@ export const setPostLoading = () => {
     };
 };
 
-export const getCurrentPost = () => dispatch => {
+export const clearCurrentPost = () => {
+    return {
+        type: CLEAR_CURRENT_POST
+    };
+};
+
+export const getPosts = () => dispatch => {
     dispatch(setPostLoading());
     axios
         .get('/posts/total')
         .then(res =>
             dispatch({
-                type: GET_POST,
+                type: GET_POSTS,
                 payload: res.data
             })
         )
         .catch(err =>
             dispatch({
                 type: GET_ERRORS,
-                payload: {}
+                payload: null
             })
-        );
+        )
 };

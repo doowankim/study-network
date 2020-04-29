@@ -28,7 +28,7 @@ const Strong = styled.strong`
 const SubTitle = styled.div`
   max-width: 400px;
   color: #777;
-  margin-top: 13px;
+  margin-top: 10px;
   font-size: 16px;
   line-height: 1.4;
   margin-bottom: 40px;
@@ -71,10 +71,11 @@ class Dashboard extends Component {
             <Container>
                 <section>
                     <Description>
-                        온라인/오프라인 어디서든 하고싶은 공부를 사람들과 모여서 즐겁게 하는 방법! <Strong>스터디플랫폼</Strong>
+                        온라인/오프라인 어디서든 하고싶은 공부를 사람들과 모여서 즐겁게 하는 방법 <br /> <Strong>스터디플랫폼</Strong>
                     </Description>
                     <SubTitle>
-                        어디 지역이든 스터디를 만들고 진행해보세요.
+                        스터디를 관리하고 시작하고 싶으신가요?
+                        <SubTitle>어디 지역이든 스터디를 만들고 진행해보세요!</SubTitle>
                     </SubTitle>
                 </section>
                 <section>
