@@ -38,7 +38,7 @@ class BoardForm extends Component {
 
         return (
             <div>
-                <form onSubmit={this.onSubmit}>
+                <Form onSubmit={this.onSubmit}>
                     <Input
                         name="title"
                         placeholder="제목을 입력하세요"
@@ -62,7 +62,7 @@ class BoardForm extends Component {
                     <div>
                         <button type="submit" className="btn btn-primary">글 등록하기</button>
                     </div>
-                </form>
+                </Form>
             </div>
         );
     }

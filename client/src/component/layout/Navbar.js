@@ -17,6 +17,7 @@ const Text = styled.div`
 
 const Title = styled.div`
   font-size: 17px;
+  font-weight: 700;
 `;
 
 class Navbar extends Component {
@@ -45,7 +46,7 @@ class Navbar extends Component {
                                 <Text>마이페이지</Text>
                             </a>
                         <a
-                            href=""
+                            href="/"
                             onClick={this.onLogoutClick.bind(this)}
                             className="nav-link"
                         >

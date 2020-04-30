@@ -1,7 +1,6 @@
 import {
     GET_ERRORS,
-    SET_CURRENT_USER,
-    CLEAR_CURRENT_PROFILE
+    SET_CURRENT_USER
 } from "./type";
 import axios from 'axios';
 

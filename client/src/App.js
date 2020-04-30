@@ -10,13 +10,15 @@ import Footer from "./component/layout/Footer";
 import Navbar from "./component/layout/Navbar";
 import Register from "./component/auth/Register";
 import Login from "./component/auth/Login";
-import Dashboard from "./component/Dashboard";
+import Dashboard from "./component/layout/Dashboard";
 import Profile from "./component/Profile/Profile";
 import PrivateRoute from "./component/common/PrivateRoute";
 import Write from "./component/board/BoardForm";
 import EditProfile from "./component/Profile/EditProfile";
 import BoardDetail from "./component/board/BoardDetail";
 import PostModal from "./component/modal/PostModal";
+
+import "./App.css";
 
 if (localStorage.jwtToken) {
     setAuthToken(localStorage.jwtToken);

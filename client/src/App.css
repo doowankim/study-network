@@ -1,0 +1,7 @@
+.landing {
+    position: relative;
+    background: url('./component/img/study.jpg') no-repeat;
+    background-size: auto;
+    background-position: center;
+    height: 500px;
+}
