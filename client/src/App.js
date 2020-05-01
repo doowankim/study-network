@@ -16,7 +16,6 @@ import PrivateRoute from "./component/common/PrivateRoute";
 import Write from "./component/board/BoardForm";
 import EditProfile from "./component/Profile/EditProfile";
 import BoardDetail from "./component/board/BoardDetail";
-import PostModal from "./component/modal/PostModal";
 
 import "./App.css";
 
@@ -72,13 +71,6 @@ class App extends Component {
                                     exact
                                     path="/boarddetail"
                                     component={BoardDetail}
-                                />
-                            </Switch>
-                            <Switch>
-                                <PrivateRoute
-                                    exact
-                                    path="/postmodal"
-                                    component={PostModal}
                                 />
                             </Switch>
                         </div>

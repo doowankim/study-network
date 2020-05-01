@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import Moment from "react-moment";
-import styled from "styled-components";
-import { getPosts } from "../../actions/postActions";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
+import { getPosts } from "../../actions/postActions";
+import BoardDetail from "./BoardDetail";
 
 class BoardItems extends Component {
 
@@ -14,7 +12,21 @@ class BoardItems extends Component {
     }
 
     render() {
-        const { posts } = this.props.post;
+        const { posts, loading } = this.props.board;
+
+        let postContent;
+
+        if (posts === null || loading) {
+            postContent = null;
+        } else {
+            if (Object.keys(posts).length > 0) {
+                postContent = (
+                    <div>
+                        <BoardDetail posts={posts.posts} />
+                    </div>
+                )
+            }
+        }
 
         return (
             <div className="board">
@@ -22,16 +34,7 @@ class BoardItems extends Component {
                     <div className="row">
                         <table className="table table-hover">
                             <tbody>
-                                {/*<Tr>*/}
-                                {/*    <th scope="row">스터디</th>*/}
-                                {/*    <td>{posts.posts.name}</td>*/}
-                                {/*    <td>{posts.posts.title}</td>*/}
-                                {/*    <td>*/}
-                                {/*        <Moment format="YYYY년 MM월 DD일">*/}
-                                {/*            {posts.posts.date.substring(0, 10)}*/}
-                                {/*        </Moment>*/}
-                                {/*    </td>*/}
-                                {/*</Tr>*/}
+                            {postContent}
                             </tbody>
                         </table>
                     </div>
@@ -41,17 +44,13 @@ class BoardItems extends Component {
     }
 }
 
-const Tr = styled.tr`
-  cursor: pointer;
-`;
-
 BoardItems.propTypes = {
     getPosts: PropTypes.func.isRequired,
-    post: PropTypes.object.isRequired
+    board: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
-    post: state.post
+    board: state.board
 })
 
 export default connect(mapStateToProps, { getPosts })(BoardItems)
