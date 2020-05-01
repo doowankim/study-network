@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { getPosts } from "../../actions/postActions";
-import BoardDetail from "./BoardDetail";
+import BoardDetail from "./BoardList";
 
-class BoardItems extends Component {
+class BoardView extends Component {
 
     componentDidMount() {
         this.props.getPosts();
@@ -44,7 +44,7 @@ class BoardItems extends Component {
     }
 }
 
-BoardItems.propTypes = {
+BoardView.propTypes = {
     getPosts: PropTypes.func.isRequired,
     board: PropTypes.object.isRequired
 }
@@ -53,4 +53,4 @@ const mapStateToProps = state => ({
     board: state.board
 })
 
-export default connect(mapStateToProps, { getPosts })(BoardItems)
+export default connect(mapStateToProps, { getPosts })(BoardView)

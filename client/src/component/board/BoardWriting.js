@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 import { createPost } from "../../actions/postActions";
 
-class BoardForm extends Component {
+class BoardWriting extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -104,7 +104,7 @@ const _Input = styled.input`
   border-style: none;
 `;
 
-BoardForm.propTypes = {
+BoardWriting.propTypes = {
     posts: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired
 }
@@ -115,5 +115,5 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, { createPost })(
-    withRouter(BoardForm)
+    withRouter(BoardWriting)
 );

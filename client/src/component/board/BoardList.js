@@ -3,16 +3,16 @@ import { connect } from 'react-redux';
 import Moment from 'react-moment';
 import styled from "styled-components";
 
-class BoardDetail extends Component {
+class BoardList extends Component {
     render() {
-        const boardDetail = this.props.posts.map(po => (
+        const boardDetail = this.props.posts.map(post => (
             <Tr>
-                <td>{po.name}</td>
-                <td>{po.title}</td>
-                <td>{po.text}</td>
+                <td>{post.name}</td>
+                <td>{post.title}</td>
+                <td>{post.text}</td>
                 <td>
                     <Moment format="YYYY년 MM월 DD일">
-                        {po.date.substring(0, 10)}
+                        {post.date.substring(0, 10)}
                     </Moment>
                 </td>
             </Tr>
@@ -39,4 +39,4 @@ const Tr = styled.tr`
   cursor: pointer;
 `;
 
-export default connect(null)(BoardDetail);
+export default connect(null)(BoardList);

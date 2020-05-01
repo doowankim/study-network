@@ -13,9 +13,9 @@ import Login from "./component/auth/Login";
 import Dashboard from "./component/layout/Dashboard";
 import Profile from "./component/Profile/Profile";
 import PrivateRoute from "./component/common/PrivateRoute";
-import Write from "./component/board/BoardForm";
+import Write from "./component/board/BoardWriting";
 import EditProfile from "./component/Profile/EditProfile";
-import BoardDetail from "./component/board/BoardDetail";
+import BoardDetail from "./component/board/BoardList";
 
 import "./App.css";
 
