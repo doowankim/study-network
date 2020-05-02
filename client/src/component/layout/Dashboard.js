@@ -18,7 +18,7 @@ class Dashboard extends Component {
                     </SubTitle>
                 </section>
                 <section>
-                    <SLink to="/board">
+                    <SLink to="/boardwriting">
                         <Icon className="fas fa-pencil-alt"></Icon>
                         스터디 글쓰기
                     </SLink>

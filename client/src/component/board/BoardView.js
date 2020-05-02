@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { getPosts } from "../../actions/postActions";
-import BoardDetail from "./BoardList";
+import BoardList from "./BoardList";
 
 class BoardView extends Component {
 
@@ -14,6 +14,7 @@ class BoardView extends Component {
     render() {
         const { posts, loading } = this.props.board;
 
+        console.log(posts);
         let postContent;
 
         if (posts === null || loading) {
@@ -22,7 +23,7 @@ class BoardView extends Component {
             if (Object.keys(posts).length > 0) {
                 postContent = (
                     <div>
-                        <BoardDetail posts={posts.posts} />
+                        <BoardList posts={posts.posts} />
                     </div>
                 )
             }

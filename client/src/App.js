@@ -13,11 +13,13 @@ import Login from "./component/auth/Login";
 import Dashboard from "./component/layout/Dashboard";
 import Profile from "./component/Profile/Profile";
 import PrivateRoute from "./component/common/PrivateRoute";
-import Write from "./component/board/BoardWriting";
+import BoardWriting from "./component/board/BoardWriting";
 import EditProfile from "./component/Profile/EditProfile";
-import BoardDetail from "./component/board/BoardList";
+import BoardList from "./component/board/BoardList";
+import BoardModal from "./component/board/BoardModal";
 
 import "./App.css";
+import BoardDetail from "./component/board/BoardDetail";
 
 if (localStorage.jwtToken) {
     setAuthToken(localStorage.jwtToken);
@@ -55,8 +57,8 @@ class App extends Component {
                             <Switch>
                                 <PrivateRoute
                                     exact
-                                    path="/board"
-                                    component={Write}
+                                    path="/boardwriting"
+                                    component={BoardWriting}
                                 />
                             </Switch>
                             <Switch>
@@ -69,8 +71,22 @@ class App extends Component {
                             <Switch>
                                 <PrivateRoute
                                     exact
+                                    path="/boardlist"
+                                    component={BoardList}
+                                />
+                            </Switch>
+                            <Switch>
+                                <PrivateRoute
+                                    exact
                                     path="/boarddetail"
                                     component={BoardDetail}
+                                />
+                            </Switch>
+                            <Switch>
+                                <PrivateRoute
+                                    exact
+                                    path="/boardmodal"
+                                    component={BoardModal}
                                 />
                             </Switch>
                         </div>
