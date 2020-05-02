@@ -1,12 +1,17 @@
 import React from 'react';
 import styled from "styled-components";
+import ReactTransitionGroup from 'react-addons-css-transition-group';
 
 const BoardModal = ({ isOpen, close }) => {
     return (
         <React.Fragment>
             {
                 isOpen ?
-                    <React.Fragment>
+                    <ReactTransitionGroup
+                        transitionName={'Modal-anim'}
+                        transitionEnterTimeout={200}
+                        transitionLeaveTimeout={200}
+                    >
                         <Overlay onClick={close} />
                         <Modal>
                             <p className="title">Board Title</p>
@@ -19,9 +24,9 @@ const BoardModal = ({ isOpen, close }) => {
                                 <button onClick={close}>Confirm</button>
                             </div>
                         </Modal>
-                    </React.Fragment>
+                    </ReactTransitionGroup>
                     :
-                    null
+                    <ReactTransitionGroup transitionName={'Modal-anim'} transitionEnterTimeout={200} transitionLeaveTimeout={200} />
             }
         </React.Fragment>
     )
@@ -33,7 +38,18 @@ const Overlay = styled.div`
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: rgba(0,0,0,0.16);    
+  background-color: rgba(0,0,0,0.16);
+  &.Modal-anim-enter {
+    opacity: 0.00;
+    transition: all 0.2s;
+  }
+  &.Modal-anim-leave {
+    opacity: 1;
+    transition: all 0.2s;
+  }
+  &.Modal-anim-leave.Modal-anim-leave-active {
+    opacity: 0.00;
+  }    
 `;
 
 const Modal = styled.div`
@@ -45,6 +61,24 @@ const Modal = styled.div`
     border-radius: 10px;
     background-color: white;
     box-shadow: 0px 3px 6px rgba(0,0,0,0.16);
+    &.Modal-anim-enter {
+      opacity: 0.00;
+      transform: translate(-50%, -50%) scale(0.7);
+      transition: all 0.2s;
+    }
+    &.Modal-anim-enter.Modal-anim-enter-active {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    &.Modal-anim-leave {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+      transition: all 0.2s;
+    }
+    &.Modal-anim-leave.Modal-anim-leave-active {
+      opacity: 0.00;
+      transform: translate(-50%, -50%) scale(0.7);
+    }
     & > * {
       &.first-child {
         margin-top: 16px;
