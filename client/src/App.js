@@ -16,7 +16,7 @@ import PrivateRoute from "./component/common/PrivateRoute";
 import BoardWriting from "./component/board/BoardWriting";
 import EditProfile from "./component/Profile/EditProfile";
 import BoardList from "./component/board/BoardList";
-import BoardModal from "./component/board/BoardModal";
+import Myboard from "./component/Profile/Myboard";
 
 import "./App.css";
 import BoardDetail from "./component/board/BoardDetail";
@@ -85,8 +85,8 @@ class App extends Component {
                             <Switch>
                                 <PrivateRoute
                                     exact
-                                    path="/boardmodal"
-                                    component={BoardModal}
+                                    path="/myboard"
+                                    component={Myboard}
                                 />
                             </Switch>
                         </div>

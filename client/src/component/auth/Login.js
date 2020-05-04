@@ -8,7 +8,6 @@ class Login extends Component {
     constructor() {
         super();
         this.state = {
-            isModalOpen: false,
             email: '',
             password: '',
             errors: {}
@@ -67,7 +66,7 @@ class Login extends Component {
                                         className={classNames('form-control', {
                                             'is-invalid': errors.email
                                         })}
-                                        placeholder="이메일을 입력해주세요"
+                                        placeholder="example@studyplatform.com"
                                         name="email"
                                         value={this.state.email}
                                         onChange={this.onChange}
@@ -83,7 +82,7 @@ class Login extends Component {
                                         className={classNames('form-control', {
                                             'is-invalid': errors.password
                                         })}
-                                        placeholder="비밀번호를 입력해주세요"
+                                        placeholder="비밀번호"
                                         name="password"
                                         value={this.state.password}
                                         onChange={this.onChange}

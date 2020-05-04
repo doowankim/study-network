@@ -65,7 +65,7 @@ class Register extends Component {
                                         className={classNames('form-control', {
                                             'is-invalid': errors.email
                                         })}
-                                        placeholder="이메일을 입력해주세요"
+                                        placeholder="example@studyplatform.com"
                                         name="email"
                                         value={this.state.email}
                                         onChange={this.onChange}
@@ -81,7 +81,7 @@ class Register extends Component {
                                         className={classNames('form-control', {
                                             'is-invalid': errors.name
                                         })}
-                                        placeholder="이름을 입력해주세요"
+                                        placeholder="이름"
                                         name="name"
                                         value={this.state.name}
                                         onChange={this.onChange}
@@ -97,7 +97,7 @@ class Register extends Component {
                                         className={classNames('form-control', {
                                             'is-invalid': errors.password
                                         })}
-                                        placeholder="비밀번호를 입력해주세요"
+                                        placeholder="비밀번호"
                                         name="password"
                                         value={this.state.password}
                                         onChange={this.onChange}
@@ -113,7 +113,7 @@ class Register extends Component {
                                         className={classNames('form-control', {
                                             'is-invalid': errors.password2
                                         })}
-                                        placeholder="비밀번호를 한 번 더 입력해주세요"
+                                        placeholder="비밀번호 확인"
                                         name="password2"
                                         value={this.state.password2}
                                         onChange={this.onChange}

@@ -14,7 +14,6 @@ class BoardView extends Component {
     render() {
         const { posts, loading } = this.props.board;
 
-        console.log(posts);
         let postContent;
 
         if (posts === null || loading) {

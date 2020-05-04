@@ -65,7 +65,7 @@ class Navbar extends Component {
                     </Link>
                 </li>
                 <li className="nav-item">
-                    <Link className="nav-link" to="login">
+                    <Link className="nav-link" to="/login">
                         <Text>로그인</Text>
                     </Link>
                 </li>

@@ -108,7 +108,7 @@ const Email = styled.div`
 `;
 
 Profile.propTypes = {
-    auth: PropTypes.object.isRequired
+    board: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({

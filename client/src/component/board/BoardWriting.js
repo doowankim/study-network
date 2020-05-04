@@ -39,7 +39,7 @@ class BoardWriting extends Component {
         return (
             <div>
                 <Form onSubmit={this.onSubmit}>
-                    <Input
+                    <InputTitle
                         name="title"
                         placeholder="제목을 입력하세요"
                         onChange={this.onChange}
@@ -49,7 +49,7 @@ class BoardWriting extends Component {
                     {errors.title && (
                         <div className="invalid-feedback">{errors.title}</div>
                     )}
-                    <_Input
+                    <InputText
                         name="text"
                         placeholder="자유롭게 작성해보세요"
                         onChange={this.onChange}
@@ -72,7 +72,7 @@ const Form = styled.form`
   //margin-left: 230px;
 `;
 
-const Input = styled.input`
+const InputTitle = styled.input`
   display: block;
   font-size: 2.75rem;
   width: 100%;
@@ -89,7 +89,7 @@ const Input = styled.input`
   border-bottom: 1px solid #f2f2f2;
 `;
 
-const _Input = styled.input`
+const InputText = styled.input`
   display: flex;
   font-size: 2.75rem;
   width: 100%;

@@ -1,35 +1,38 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from "styled-components";
 import ReactTransitionGroup from 'react-addons-css-transition-group';
 
-const BoardModal = ({ isOpen, close }) => {
-    return (
-        <React.Fragment>
-            {
-                isOpen ?
-                    <ReactTransitionGroup
-                        transitionName={'Modal-anim'}
-                        transitionEnterTimeout={200}
-                        transitionLeaveTimeout={200}
-                    >
-                        <Overlay onClick={close} />
-                        <Modal>
-                            <p className="title">Board Title</p>
-                            <div className="content">
-                                <p>
-                                    Text
-                                </p>
-                            </div>
-                            <div className="button-wrap">
-                                <button onClick={close}>Confirm</button>
-                            </div>
-                        </Modal>
-                    </ReactTransitionGroup>
-                    :
-                    <ReactTransitionGroup transitionName={'Modal-anim'} transitionEnterTimeout={200} transitionLeaveTimeout={200} />
-            }
-        </React.Fragment>
-    )
+class LoginModal extends Component {
+    render() {
+        const { isOpen, close } = this.props;
+        return (
+            <>
+                {
+                    isOpen ?
+                        <ReactTransitionGroup
+                            transitionName={'Modal-anim'}
+                            transitionEnterTimeout={200}
+                            transitionLeaveTimeout={200}
+                        >
+                            <Overlay onClick={close} />
+                            <Modal>
+                                <p className="title">Title</p>
+                                <div className="content">
+                                    <p>
+                                        Text
+                                    </p>
+                                </div>
+                                <div className="button-wrap">
+                                    <button onClick={close}>Confirm</button>
+                                </div>
+                            </Modal>
+                        </ReactTransitionGroup>
+                        :
+                        <ReactTransitionGroup transitionName={'Modal-anim'} transitionEnterTimeout={200} transitionLeaveTimeout={200} />
+                }
+            </>
+        )
+    }
 }
 
 const Overlay = styled.div`
@@ -107,7 +110,7 @@ const Modal = styled.div`
         width: 100%;
         padding: 12px 0;
         border-radius: 0 0 10px 10px;
-        background-color: #ad7cef;
+        background-color: #455dff;
         font-size: 13pt;
         color: white;
         border: 0;
@@ -122,4 +125,4 @@ const Modal = styled.div`
     }
 `;
 
-export default BoardModal;
+export default LoginModal;
