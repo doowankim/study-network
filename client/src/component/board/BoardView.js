@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import styled from "styled-components";
 
 import { getPosts } from "../../actions/postActions";
 import BoardList from "./BoardList";
@@ -29,20 +30,16 @@ class BoardView extends Component {
         }
 
         return (
-            <div className="board">
-                <div className="container">
-                    <div className="row">
-                        <table className="table table-hover">
-                            <tbody>
-                            {postContent}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+            <Container>
+                {postContent}
+            </Container>
         );
     }
 }
+
+const Container = styled.div`
+  
+`;
 
 BoardView.propTypes = {
     getPosts: PropTypes.func.isRequired,

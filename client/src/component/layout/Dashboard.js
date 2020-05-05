@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import styled from "styled-components";
 import { Link } from 'react-router-dom';
-import BoardItems from "../board/BoardView";
+import BoardView from "../board/BoardView";
 
 class Dashboard extends Component {
     render() {
@@ -25,8 +25,10 @@ class Dashboard extends Component {
                 </section>
                 <section>
                     <Title>나에게 맞는 스터디 둘러보기</Title>
-                    <BoardItems />
                 </section>
+                <Item>
+                    <BoardView />
+                </Item>
             </Container>
         );
     }
@@ -91,6 +93,10 @@ const SLink = styled(Link)`
 const Icon = styled.i`
   margin-right: 5px;
   margin-top: 3px;
+`;
+
+const Item = styled.div`
+  
 `;
 
 export default Dashboard;
