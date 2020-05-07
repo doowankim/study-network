@@ -69,7 +69,7 @@ class BoardWriting extends Component {
 }
 
 const Form = styled.form`
-  //margin-left: 230px;
+  /* margin-left: 230px; */
 `;
 
 const InputTitle = styled.input`
@@ -87,6 +87,7 @@ const InputTitle = styled.input`
   border-color: initial;
   border-image: initial;
   border-bottom: 1px solid #f2f2f2;
+  margin-bottom: 20px;
 `;
 
 const InputText = styled.input`
@@ -102,6 +103,7 @@ const InputText = styled.input`
   outline: none;
   border-width: initial;
   border-style: none;
+  margin-bottom: 20px;
 `;
 
 BoardWriting.propTypes = {
