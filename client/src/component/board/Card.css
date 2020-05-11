@@ -4,7 +4,11 @@ body {
 
 .card {
     width: 20rem;
+    height: 14rem;
     flex-direction: row;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    transition: box-shadow 0.25s ease-in 0s, transform 0.25s ease-in 0s;
 }
 
 .card:hover {

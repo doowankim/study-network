@@ -74,7 +74,7 @@ const Form = styled.form`
 
 const InputTitle = styled.input`
   display: block;
-  font-size: 2.75rem;
+  font-size: 2rem;
   width: 100%;
   resize: none;
   line-height: 1.5;
@@ -92,7 +92,7 @@ const InputTitle = styled.input`
 
 const InputText = styled.input`
   display: flex;
-  font-size: 2.75rem;
+  font-size: 2rem;
   width: 100%;
   height: 500px;
   resize: none;

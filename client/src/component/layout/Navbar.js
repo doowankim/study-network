@@ -5,21 +5,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from "styled-components";
 
-const Container = styled.div`
-  display: flex;
-`;
-
-const Text = styled.div`
-  font-size: 13px;
-  font-weight: 600;
-  display: flex;
-`;
-
-const Title = styled.div`
-  font-size: 17px;
-  font-weight: 700;
-`;
-
 class Navbar extends Component {
 
     onLogoutClick(e) {
@@ -95,6 +80,21 @@ class Navbar extends Component {
         );
     }
 }
+
+const Container = styled.div`
+  display: flex;
+`;
+
+const Text = styled.div`
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+`;
+
+const Title = styled.div`
+  font-size: 17px;
+  font-weight: 700;
+`;
 
 Navbar.propTypes = {
     logoutUser: PropTypes.func.isRequired,
