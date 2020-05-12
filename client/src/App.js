@@ -16,7 +16,6 @@ import BoardWriting from "./component/board/BoardWriting";
 import BoardList from "./component/board/BoardList";
 
 import "./App.css";
-import BoardDetail from "./component/board/BoardDetail";
 
 if (localStorage.jwtToken) {
     setAuthToken(localStorage.jwtToken);
@@ -56,13 +55,6 @@ class App extends Component {
                                     exact
                                     path="/boardlist"
                                     component={BoardList}
-                                />
-                            </Switch>
-                            <Switch>
-                                <PrivateRoute
-                                    exact
-                                    path="/boarddetail"
-                                    component={BoardDetail}
                                 />
                             </Switch>
                         </div>

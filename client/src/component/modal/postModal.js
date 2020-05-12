@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from "styled-components";
 import ReactTransitionGroup from 'react-addons-css-transition-group';
 
-class LoginModal extends Component {
+class PostModal extends Component {
     render() {
         const { isOpen, isClose } = this.props;
         return (
@@ -24,10 +24,11 @@ class LoginModal extends Component {
                                     <p>
                                         Comment<br />
                                         <input />
+                                        <button>댓글 달기</button>
                                     </p>
                                 </div>
                                 <div className="button-wrap">
-                                    <button onClick={isClose}>Confirm</button>
+                                    <button onClick={isClose}>닫 기</button>
                                 </div>
                             </Modal>
                         </ReactTransitionGroup>
@@ -129,4 +130,4 @@ const Modal = styled.div`
     }
 `;
 
-export default LoginModal;
+export default PostModal;

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Moment from 'react-moment';
 import styled from "styled-components";
 import "./Card.css";
-import LoginModal from "../modal/LoginModal";
+import PostModal from "../modal/postModal";
 
 class BoardList extends Component {
     constructor(props) {
@@ -57,7 +57,7 @@ class BoardList extends Component {
                 <div className="row">
                     {boardDetail}
                 </div>
-                <LoginModal isOpen={this.state.isModalOpen} isClose={this.onCloseModal} />
+                <PostModal isOpen={this.state.isModalOpen} isClose={this.onCloseModal} />
             </div>
         );
     }
