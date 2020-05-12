@@ -3,14 +3,36 @@ import { connect } from 'react-redux';
 import Moment from 'react-moment';
 import styled from "styled-components";
 import "./Card.css";
+import LoginModal from "../modal/LoginModal";
 
 class BoardList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isModalOpen: false
+        }
+    }
+
+    onOpenModal = () => {
+        this.setState({ isModalOpen: true });
+    }
+
+    onCloseModal = () => {
+        this.setState({ isModalOpen: false });
+    }
+
     render() {
         const boardDetail = this.props.posts.map(post => (
             <div className="col-md-4">
                 <div className="card text-center">
-                    <div className="card-body text-dark">
-                        <Title className="card-title">{post.title}</Title>
+                    <div
+                        className="card-body text-dark"
+                        style={{ cursor: "pointer" }}
+                        onClick={this.onOpenModal}
+                    >
+                        <Title className="card-title">
+                            {post.title}
+                        </Title>
                         <Text className="card-text text-dark">{post.text}</Text>
                         <SubDate>
                             <Moment format="YYYY년 MM월 DD일">
@@ -35,13 +57,13 @@ class BoardList extends Component {
                 <div className="row">
                     {boardDetail}
                 </div>
+                <LoginModal isOpen={this.state.isModalOpen} isClose={this.onCloseModal} />
             </div>
         );
     }
 }
 
 const Title = styled.h4`
-  cursor: pointer;
   font-size: 16px;
   font-weight: 600;
 `;
@@ -49,7 +71,6 @@ const Title = styled.h4`
 const Text = styled.p`
   flex: 1;
   line-height: 1.4;
-  cursor: pointer;
 `;
 
 const SubDate = styled.span`

@@ -4,7 +4,7 @@ import ReactTransitionGroup from 'react-addons-css-transition-group';
 
 class LoginModal extends Component {
     render() {
-        const { isOpen, close } = this.props;
+        const { isOpen, isClose } = this.props;
         return (
             <>
                 {
@@ -14,16 +14,20 @@ class LoginModal extends Component {
                             transitionEnterTimeout={200}
                             transitionLeaveTimeout={200}
                         >
-                            <Overlay onClick={close} />
+                            <Overlay onClick={isClose} />
                             <Modal>
                                 <p className="title">Title</p>
                                 <div className="content">
                                     <p>
                                         Text
                                     </p>
+                                    <p>
+                                        Comment<br />
+                                        <input />
+                                    </p>
                                 </div>
                                 <div className="button-wrap">
-                                    <button onClick={close}>Confirm</button>
+                                    <button onClick={isClose}>Confirm</button>
                                 </div>
                             </Modal>
                         </ReactTransitionGroup>
