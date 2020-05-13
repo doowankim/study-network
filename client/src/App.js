@@ -14,6 +14,7 @@ import Dashboard from "./component/layout/Dashboard";
 import PrivateRoute from "./component/common/PrivateRoute";
 import BoardWriting from "./component/board/BoardWriting";
 import BoardList from "./component/board/BoardList";
+import BoardDetailPage from "./component/board/BoardDetailPage";
 
 import "./App.css";
 
@@ -40,9 +41,10 @@ class App extends Component {
                     <div className="App">
                         <Navbar />
                         <div className="container">
-                            <Route exact path="/dashboard" component={Dashboard} />
+                            <Route exact path="/" component={Dashboard} />
                             <Route exact path="/register" component={Register} />
                             <Route exact path="/login" component={Login} />
+                            <Route exact path="/boardDetailPage/:postId" component={BoardDetailPage} />
                             <Switch>
                                 <PrivateRoute
                                     exact

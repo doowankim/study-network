@@ -3,23 +3,23 @@ import { connect } from 'react-redux';
 import Moment from 'react-moment';
 import styled from "styled-components";
 import "./Card.css";
-import PostModal from "../modal/postModal";
+// import PostModal from "../modal/postModal";
 
 class BoardList extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isModalOpen: false
-        }
-    }
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         isModalOpen: false
+    //     }
+    // }
 
-    onOpenModal = () => {
-        this.setState({ isModalOpen: true });
-    }
+    // onOpenModal = () => {
+    //     this.setState({ isModalOpen: true });
+    // }
 
-    onCloseModal = () => {
-        this.setState({ isModalOpen: false });
-    }
+    // onCloseModal = () => {
+    //     this.setState({ isModalOpen: false });
+    // }
 
     render() {
         const boardDetail = this.props.posts.map(post => (
@@ -28,12 +28,16 @@ class BoardList extends Component {
                     <div
                         className="card-body text-dark"
                         style={{ cursor: "pointer" }}
-                        onClick={this.onOpenModal}
+                        // onClick={this.onOpenModal}
                     >
                         <Title className="card-title">
                             {post.title}
                         </Title>
-                        <Text className="card-text text-dark">{post.text}</Text>
+                        <Text className="card-text text-dark">
+                            <Transfer href={`/boardDetailPage/${post._id}`}>
+                                {post.text}
+                            </Transfer>
+                        </Text>
                         <SubDate>
                             <Moment format="YYYY년 MM월 DD일">
                                 {post.date.substring(0, 10)}
@@ -57,7 +61,7 @@ class BoardList extends Component {
                 <div className="row">
                     {boardDetail}
                 </div>
-                <PostModal isOpen={this.state.isModalOpen} isClose={this.onCloseModal} />
+                {/*<PostModal isOpen={this.state.isModalOpen} isClose={this.onCloseModal} />*/}
             </div>
         );
     }
@@ -66,6 +70,15 @@ class BoardList extends Component {
 const Title = styled.h4`
   font-size: 16px;
   font-weight: 600;
+`;
+
+const Transfer = styled.a`
+  text-shadow: 0 0 24px;
+  position: relative;
+  color: black;
+  :hover {
+      text-decoration: none;
+  }
 `;
 
 const Text = styled.p`
