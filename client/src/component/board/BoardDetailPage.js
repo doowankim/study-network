@@ -1,14 +1,26 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
+import Moment from 'react-moment';
 
 class BoardDetailPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            comment: ''
+            comment: '',
+            postDetail: []
         }
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        const getPostId = this.props.match.params.postId;
+
+        axios
+            .get(`/posts/${getPostId}`, getPostId)
+            .then(res => this.setState({ postDetail: res.data.post }))
+            .catch(err => console.log(err));
     }
 
     onChange(e) {
@@ -24,22 +36,32 @@ class BoardDetailPage extends Component {
         console.log(newComment);
     }
     render() {
+        const { postDetail } = this.state;
+        console.log(postDetail.date);
         return (
             <Container>
                 <Wrapper>
                     <Header>
-                        글 제목
+                        {postDetail.title}
                     </Header>
                     <UserInfo>
                         <Information>
-                            <UserName>유저 이름</UserName>
+                          <img
+                            className="rounded-circle"
+                            src={postDetail.avatar}
+                            alt={postDetail.name}
+                            style={{ width: '25px', height: '25px', marginRight: '5px', marginTop: '5px' }}
+                          />
+                            <UserName>{postDetail.name}</UserName>
                             <Separator>·</Separator>
-                            <BoardDate>글 작성 날짜</BoardDate>
+                            <BoardDate>
+                                {postDetail.date && postDetail.date.substring(0, 10)}
+                            </BoardDate>
                         </Information>
                     </UserInfo>
                     <TextContainer>
                         <TextWrapper>
-                            <Text>글 내용</Text>
+                            <Text>{postDetail.text}</Text>
                         </TextWrapper>
                     </TextContainer>
                     <CommentContainer onSubmit={this.onSubmit}>
