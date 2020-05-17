@@ -3,23 +3,8 @@ import { connect } from 'react-redux';
 import Moment from 'react-moment';
 import styled from "styled-components";
 import "./Card.css";
-// import PostModal from "../modal/postModal";
 
 class BoardList extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         isModalOpen: false
-    //     }
-    // }
-
-    // onOpenModal = () => {
-    //     this.setState({ isModalOpen: true });
-    // }
-
-    // onCloseModal = () => {
-    //     this.setState({ isModalOpen: false });
-    // }
 
     render() {
         const boardDetail = this.props.posts.map(post => (
@@ -28,7 +13,6 @@ class BoardList extends Component {
                     <div
                         className="card-body text-dark"
                         style={{ cursor: "pointer" }}
-                        // onClick={this.onOpenModal}
                     >
                         <Title className="card-title">
                             {post.title}
@@ -61,7 +45,6 @@ class BoardList extends Component {
                 <div className="row">
                     {boardDetail}
                 </div>
-                {/*<PostModal isOpen={this.state.isModalOpen} isClose={this.onCloseModal} />*/}
             </div>
         );
     }
