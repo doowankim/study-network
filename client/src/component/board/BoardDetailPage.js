@@ -30,14 +30,19 @@ class BoardDetailPage extends Component {
     onSubmit(e) {
         e.preventDefault();
 
+        const getPostId = this.props.match.params.postId;
+
         const newComment = {
             comment: this.state.comment
         }
         console.log(newComment);
+
+        // axios
+        //   .post(`/posts/comment/${getPostId}`, newComment)
+        //   .then(res => this.setState({ newComment: res.data.post }))
     }
     render() {
         const { postDetail } = this.state;
-        console.log(postDetail.date);
         return (
             <Container>
                 <Wrapper>

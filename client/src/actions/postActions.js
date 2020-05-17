@@ -9,7 +9,7 @@ import {
 export const createPost = (postData, history) => dispatch => {
     axios
         .post('/posts', postData)
-        .then(res => history.push('/dashboard'))
+        .then(res => history.push('/'))
         .catch(err =>
             dispatch({
                 type: GET_ERRORS,

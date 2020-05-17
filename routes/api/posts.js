@@ -83,7 +83,7 @@ router.post('/comment/:postId', authCheck, (req, res) => {
             post.comments.unshift(newComment);
             post
                 .save()
-                .then(post => res.json(post));
+                .then(post => res.json({ success: true, post }));
         })
         .catch(err => res.json(err));
 });
