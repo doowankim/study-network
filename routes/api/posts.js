@@ -50,7 +50,7 @@ router.get('/:postId', authCheck, (req, res) => {
             if(!post){
                 return res.json({
                     msg: 'There is no posts for this user'
-                });
+                }); 
             } else{
                 res.json({ success: true, post });
             }
