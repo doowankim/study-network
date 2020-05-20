@@ -4,91 +4,87 @@ import axios from 'axios';
 import Moment from 'react-moment';
 
 class BoardDetailPage extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            comment: '',
-            postDetail: []
-        }
-        this.onChange = this.onChange.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      comment: '',
+      postDetail: [],
+    };
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
 
-    componentDidMount() {
-        const getPostId = this.props.match.params.postId;
+  componentDidMount() {
+    const getPostId = this.props.match.params.postId;
 
-        axios
-            .get(`/posts/${getPostId}`, getPostId)
-            .then(res => this.setState({ postDetail: res.data.post }))
-            .catch(err => console.log(err));
-    }
+    axios
+      .get(`/posts/${getPostId}`, getPostId)
+      .then((res) => this.setState({postDetail: res.data.post}))
+      .catch((err) => console.log(err));
+  }
 
-    onChange(e) {
-        this.setState({ [e.target.name]: e.target.value });
-    }
+  onChange(e) {
+    this.setState({[e.target.name]: e.target.value});
+  }
 
-    onSubmit(e) {
-        e.preventDefault();
+  onSubmit(e) {
+    e.preventDefault();
 
-        const getPostId = this.props.match.params.postId;
+    const getPostId = this.props.match.params.postId;
 
-        const newComment = {
-            comment: this.state.comment
-        }
-        console.log(newComment);
-
-        // axios
-        //   .post(`/posts/comment/${getPostId}`, newComment)
-        //   .then(res => this.setState({ newComment: res.data.post }))
-    }
-    render() {
-        const { postDetail } = this.state;
-        return (
-            <Container>
-                <Wrapper>
-                    <Header>
-                        {postDetail.title}
-                    </Header>
-                    <UserInfo>
-                        <Information>
-                          <img
-                            className="rounded-circle"
-                            src={postDetail.avatar}
-                            alt={postDetail.name}
-                            style={{ width: '25px', height: '25px', marginRight: '5px', marginTop: '5px' }}
-                          />
-                            <UserName>{postDetail.name}</UserName>
-                            <Separator>·</Separator>
-                            <BoardDate>
-                                {postDetail.date && postDetail.date.substring(0, 10)}
-                            </BoardDate>
-                        </Information>
-                    </UserInfo>
-                    <TextContainer>
-                        <TextWrapper>
-                            <Text>{postDetail.text}</Text>
-                        </TextWrapper>
-                    </TextContainer>
-                    <CommentContainer onSubmit={this.onSubmit}>
-                        <CommentWrapper>
-                            <Comment
-                                name="comment"
-                                placeholder="댓글을 작성하세요"
-                                style={{height: '70px'}}
-                                onChange={this.onChange}
-                            >
-                            </Comment>
-                            <ButtonWrapper>
-                                <Button type="submit">
-                                    댓글 작성
-                                </Button>
-                            </ButtonWrapper>
-                        </CommentWrapper>
-                    </CommentContainer>
-                </Wrapper>
-            </Container>
-        );
-    }
+    const newComment = {
+      comment: this.state.comment,
+    };
+    console.log(newComment);
+  }
+  render() {
+    const {postDetail} = this.state;
+    return (
+      <Container>
+        <Wrapper>
+          <Header>{postDetail.title}</Header>
+          <UserInfo>
+            <Information>
+              <img
+                className="rounded-circle"
+                src={postDetail.avatar}
+                alt={postDetail.name}
+                style={{
+                  width: '25px',
+                  height: '25px',
+                  marginRight: '5px',
+                  marginTop: '5px',
+                }}
+              />
+              <UserName>{postDetail.name}</UserName>
+              <Separator>·</Separator>
+              <BoardDate>
+                {postDetail.date && postDetail.date.substring(0, 10)}
+              </BoardDate>
+            </Information>
+          </UserInfo>
+          <TextContainer>
+            <TextWrapper>
+              <Text>{postDetail.text}</Text>
+            </TextWrapper>
+          </TextContainer>
+          <CommentContainer onSubmit={this.onSubmit}>
+            <CommentWrapper>
+              <Comment
+                name="comment"
+                placeholder="댓글을 작성하세요"
+                style={{height: '70px'}}
+                onChange={this.onChange}
+              ></Comment>
+              <ButtonWrapper>
+                <Button type="submit">댓글 작성</Button>
+              </ButtonWrapper>
+            </CommentWrapper>
+          </CommentContainer>
+        </Wrapper>
+      </Container>
+    );
+  }
 }
 
 const Container = styled.div`
@@ -107,7 +103,7 @@ const Header = styled.div`
   font-weight: 800;
   color: rgb(52, 58, 64);
   margin-bottom: 2rem;
-  word-break: keep-all;  
+  word-break: keep-all;
 `;
 
 const UserInfo = styled.div`
@@ -120,9 +116,7 @@ const UserInfo = styled.div`
   justify-content: space-between;
 `;
 
-const Information = styled.div`
-
-`;
+const Information = styled.div``;
 
 const UserName = styled.span`
   color: rgb(52, 58, 64);
@@ -134,9 +128,7 @@ const Separator = styled.span`
   margin-right: 0.5rem;
 `;
 
-const BoardDate = styled.span`
-
-`;
+const BoardDate = styled.span``;
 
 const TextContainer = styled.div`
   width: 768px;
@@ -211,7 +203,7 @@ const Button = styled.button`
   border-style: none;
   border-color: initial;
   border-image: initial;
-  background: #5C6BC0;
+  background: #5c6bc0;
   border-radius: 4px;
 `;
 
