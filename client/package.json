@@ -43,8 +43,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:3040",
-  "devDependencies": {
-    "typescript": "^3.9.3"
-  }
+  "proxy": "http://localhost:3040"
 }

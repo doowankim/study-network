@@ -1,38 +1,40 @@
-import React, {Component} from 'react';
-import styled from "styled-components";
-import { Link } from 'react-router-dom';
-import BoardView from "../board/BoardView";
+import React from 'react';
+import styled from 'styled-components';
+import {Link} from 'react-router-dom';
+import BoardView from '../board/BoardView';
 
-class Dashboard extends Component {
-    render() {
-        return (
-            <Container>
-            <div className="landing" />
-                <section>
-                    <Description>
-                        온라인/오프라인 어디서든 하고싶은 공부를 사람들과 모여서 즐겁게 하는 방법 <br /> <Strong>스터디플랫폼</Strong>
-                    </Description>
-                    <SubTitle>
-                        스터디를 관리하고 시작하고 싶으신가요?<br />                    
-                        어디 지역이든 스터디를 만들고 진행해보세요!
-                    </SubTitle>
-                </section>
-                <section>
-                    <SLink to="/boardwriting">
-                        <Icon className="fas fa-pencil-alt"></Icon>
-                        스터디 글쓰기
-                    </SLink>
-                </section>
-                <section>
-                    <Title>나에게 맞는 스터디 둘러보기</Title>
-                </section>
-                <Item>
-                    <BoardView />
-                </Item>
-            </Container>
-        );
-    }
-}
+const Dashboard = () => {
+  return (
+    <Container>
+      <div className="landing" />
+      <section>
+        <Description>
+          온라인/오프라인 어디서든 하고싶은 공부를 사람들과 모여서 즐겁게 하는 방법
+          {' '}
+          <br />
+          {' '}
+          <Strong>스터디플랫폼</Strong>
+        </Description>
+        <SubTitle>
+          스터디를 관리하고 시작하고 싶으신가요?<br />
+          어디 지역이든 스터디를 만들고 진행해보세요!
+        </SubTitle>
+      </section>
+      <section>
+        <SLink to="/boardwriting">
+          <Icon className="fas fa-pencil-alt" />
+          스터디 글쓰기
+        </SLink>
+      </section>
+      <section>
+        <Title>나에게 맞는 스터디 둘러보기</Title>
+      </section>
+      <Item>
+        <BoardView />
+      </Item>
+    </Container>
+  );
+};
 
 const Container = styled.div`
   padding-top: 10px;
@@ -74,7 +76,7 @@ const Title = styled.title`
   margin: 0 0 5px;
 `;
 
-const SLink = styled(Link)`
+const SLink = styled (Link)`
   font-size: 16px;
   color: #fff;
   vertical-align: middle;
