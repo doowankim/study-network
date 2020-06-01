@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import Moment from 'react-moment';
 
 class BoardDetailPage extends Component {
   constructor(props) {
@@ -29,8 +28,6 @@ class BoardDetailPage extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-
-    const getPostId = this.props.match.params.postId;
 
     const newComment = {
       comment: this.state.comment,
