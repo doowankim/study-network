@@ -10,14 +10,14 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const authStore = useSelector((state) => state.auth);
   const authDetailData = authStore.user;
-  const AuthenData = authStore.isAuthenticated;
+  const AuthenticateData = authStore.isAuthenticated;
 
   const onLogoutClick = (e) => {
-    dispatch(logoutUser());
+    dispatch(logoutUser);
   };
 
   const onDeleteClick = (e) => {
-    dispatch(deleteAccount());
+    dispatch(deleteAccount);
   };
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-primary mb-4">
@@ -35,7 +35,7 @@ const Navbar = () => {
         </button>
         <div>
           <ul className="navbar-nav mr-auto">
-            {AuthenData ? (
+            {AuthenticateData ? (
               <>
                 <ul className="navbar-nav ml-auto">
                   <li className="nav-item text-center">
