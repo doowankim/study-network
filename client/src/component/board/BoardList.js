@@ -5,8 +5,8 @@ import styled from 'styled-components';
 import './Card.css';
 
 class BoardList extends Component {
-  render() {
-    const boardDetail = this.props.posts.map((post) => (
+  render () {
+    const boardDetail = this.props.posts.map (post => (
       <div className="col-md-4">
         <a
           href={`/boardDetailPage/${post._id}`}
@@ -16,13 +16,13 @@ class BoardList extends Component {
           <div className="card-body text-dark" style={{cursor: 'pointer'}}>
             <Title className="card-title">{post.title}</Title>
             <Text className="card-text text-dark">
-              <Transfer href={`/boardDetailPage/${post._id}`}>
+              <Transfer>
                 {post.text}
               </Transfer>
             </Text>
             <SubDate>
               <Moment format="YYYY년 MM월 DD일">
-                {post.date.substring(0, 10)}
+                {post.date.substring (0, 10)}
               </Moment>
             </SubDate>
             <SubText>
@@ -56,7 +56,7 @@ const Title = styled.h4`
   font-weight: 600;
 `;
 
-const Transfer = styled.a`
+const Transfer = styled.div`
   text-shadow: 0 0 24px;
   position: relative;
   color: black;
@@ -92,4 +92,4 @@ const SubText = styled.span`
   border-top: 1px solid #f7f7f7;
 `;
 
-export default connect(null)(BoardList);
+export default connect (null) (BoardList);
