@@ -4,38 +4,37 @@ import classNames from 'classnames';
 import {useDispatch, useSelector} from 'react-redux';
 import {loginUser} from '../../actions/authActions';
 
-const Login = props => {
-  const [state, setState] = useState ({email: '', password: '', errors: {}});
+const Login = (props) => {
+  const [state, setState] = useState({email: '', password: '', errors: {}});
 
-  const dispatch = useDispatch ();
+  const dispatch = useDispatch();
 
-  const history = useHistory ();
+  const history = useHistory();
 
-  const {auth, errors} = useSelector (state => state.auth);
+  const {auth, errors} = useSelector((state) => state.auth);
+
+  const {auth} = props;
 
   const {errors} = props;
 
-  useEffect (
-    () => {
-      if (props.auth.isAutenticated) {
-        props.history.push ('/');
-      }
-    },
-    [errors]
-  );
+  useEffect(() => {
+    if (auth.isAutenticated) {
+      history.push('/');
+    }
+  }, [errors, auth]);
 
-  const onChange = e => {
-    setState ({[e.target.name]: e.target.value});
+  const onChange = (e) => {
+    setState({[e.target.name]: e.target.value});
   };
 
-  const onSubmit = e => {
-    e.preventDefault ();
+  const onSubmit = (e) => {
+    e.preventDefault();
 
     const userData = {
       email: state.email,
       password: state.password,
     };
-    props.loginUser (userData);
+    loginUser(userData);
   };
 
   return (
@@ -49,7 +48,7 @@ const Login = props => {
                 <label>이메일 주소</label>
                 <input
                   type="email"
-                  className={classNames ('form-control', {
+                  className={classNames('form-control', {
                     'is-invalid': errors.email,
                   })}
                   placeholder="example@studyplatform.com"
@@ -57,14 +56,15 @@ const Login = props => {
                   value={state.email}
                   onChange={onChange}
                 />
-                {errors.email &&
-                  <div className="invalid-feedback">{errors.email}</div>}
+                {errors.email && (
+                  <div className="invalid-feedback">{errors.email}</div>
+                )}
               </div>
               <div className="form-group">
                 <label>비밀번호</label>
                 <input
                   type="password"
-                  className={classNames ('form-control', {
+                  className={classNames('form-control', {
                     'is-invalid': errors.password,
                   })}
                   placeholder="비밀번호"
@@ -72,10 +72,13 @@ const Login = props => {
                   value={state.password}
                   onChange={onChange}
                 />
-                {errors.password &&
-                  <div className="invalid-feedback">{errors.password}</div>}
+                {errors.password && (
+                  <div className="invalid-feedback">{errors.password}</div>
+                )}
               </div>
-              <button type="submit" className="btn btn-primary">확인</button>
+              <button type="submit" className="btn btn-primary">
+                확인
+              </button>
             </form>
           </div>
         </div>

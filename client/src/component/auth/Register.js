@@ -1,144 +1,134 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import React, {useState, useEffect} from 'react';
 import classNames from 'classnames';
-import {withRouter} from 'react-router-dom';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {registerUser} from '../../actions/authActions';
+import {useHistory} from 'react-router-dom';
 
-class Register extends Component {
-  constructor () {
-    super ();
-    this.state = {
-      name: '',
-      email: '',
-      password: '',
-      password2: '',
-      errors: {},
-    };
-    this.onChange = this.onChange.bind (this);
-    this.onSubmit = this.onSubmit.bind (this);
-  }
+const Register = () => {
+  const [isName, setName] = useState('');
+  const [isEmail, setEmail] = useState('');
+  const [isPassword, setPassword] = useState('');
+  const [isPassword2, setPassword2] = useState('');
 
-  onChange (e) {
-    this.setState ({[e.target.name]: e.target.value});
-  }
+  const auth = useSelector((state) => state.auth);
+  const errors = useSelector((state) => state.errors);
 
-  onSubmit (e) {
-    e.preventDefault ();
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const onChangeName = (e) => {
+    setName(e.target.value);
+  };
+
+  const onChangeEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const onChangePassword = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const onChangePassword2 = (e) => {
+    setPassword2(e.target.value);
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
 
     const newUser = {
-      name: this.state.name,
-      email: this.state.email,
-      password: this.state.password,
-      password2: this.state.password2,
+      name: isName,
+      email: isEmail,
+      password: isPassword,
+      password2: isPassword2,
     };
-    console.log (newUser);
+    dispatch(registerUser(newUser, history));
+  };
 
-    this.props.registerUser (newUser, this.props.history);
-  }
-
-  componentDidMount () {
-    if (this.props.auth.isAuthenticated) {
-      this.props.history.push ('/dashboard');
+  useEffect(() => {
+    if (auth.isAuthenticated) {
+      history.push('/dashboard');
     }
-  }
-
-  componentWillReceiveProps (nextProps) {
-    if (nextProps.errors) {
-      this.setState ({errors: nextProps.errors});
-    }
-  }
-
-  render () {
-    const {errors} = this.state;
-    return (
-      <div className="register">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8 m-auto">
-              <h1 className="display-10">회원가입</h1>
-              <form noValidate onSubmit={this.onSubmit}>
-                <div className="form-group">
-                  <label>이메일 주소</label>
-                  <input
-                    type="email"
-                    className={classNames ('form-control', {
-                      'is-invalid': errors.email,
-                    })}
-                    placeholder="example@studyplatform.com"
-                    name="email"
-                    value={this.state.email}
-                    onChange={this.onChange}
-                  />
-                  {errors.email &&
-                    <div className="invalid-feedback">{errors.email}</div>}
-                </div>
-                <div className="form-group">
-                  <label>이름</label>
-                  <input
-                    type="name"
-                    className={classNames ('form-control', {
-                      'is-invalid': errors.name,
-                    })}
-                    placeholder="이름"
-                    name="name"
-                    value={this.state.name}
-                    onChange={this.onChange}
-                  />
-                  {errors.name &&
-                    <div className="invalid-feedback">{errors.name}</div>}
-                </div>
-                <div className="form-group">
-                  <label>비밀번호</label>
-                  <input
-                    type="password"
-                    className={classNames ('form-control', {
-                      'is-invalid': errors.password,
-                    })}
-                    placeholder="비밀번호"
-                    name="password"
-                    value={this.state.password}
-                    onChange={this.onChange}
-                  />
-                  {errors.password &&
-                    <div className="invalid-feedback">{errors.password}</div>}
-                </div>
-                <div className="form-group">
-                  <label>비밀번호 확인</label>
-                  <input
-                    type="password"
-                    className={classNames ('form-control', {
-                      'is-invalid': errors.password2,
-                    })}
-                    placeholder="비밀번호 확인"
-                    name="password2"
-                    value={this.state.password2}
-                    onChange={this.onChange}
-                  />
-                  {errors.password2 &&
-                    <div className="invalid-feedback">{errors.password2}</div>}
-                </div>
-                <button type="submit" className="btn btn-primary">확인</button>
-              </form>
-            </div>
+  }, [errors]);
+  return (
+    <div className="register">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-8 m-auto">
+            <h1 className="display-10">회원가입</h1>
+            <form noValidate onSubmit={onSubmit}>
+              <div className="form-group">
+                <label>이메일 주소</label>
+                <input
+                  type="email"
+                  className={classNames('form-control', {
+                    'is-invalid': errors.email,
+                  })}
+                  placeholder="example@studyplatform.com"
+                  name="email"
+                  value={isEmail}
+                  onChange={onChangeEmail}
+                />
+                {errors.email && (
+                  <div className="invalid-feedback">{errors.email}</div>
+                )}
+              </div>
+              <div className="form-group">
+                <label>이름</label>
+                <input
+                  type="name"
+                  className={classNames('form-control', {
+                    'is-invalid': errors.name,
+                  })}
+                  placeholder="이름"
+                  name="name"
+                  value={isName}
+                  onChange={onChangeName}
+                />
+                {errors.name && (
+                  <div className="invalid-feedback">{errors.name}</div>
+                )}
+              </div>
+              <div className="form-group">
+                <label>비밀번호</label>
+                <input
+                  type="password"
+                  className={classNames('form-control', {
+                    'is-invalid': errors.password,
+                  })}
+                  placeholder="비밀번호"
+                  name="password"
+                  value={isPassword}
+                  onChange={onChangePassword}
+                />
+                {errors.password && (
+                  <div className="invalid-feedback">{errors.password}</div>
+                )}
+              </div>
+              <div className="form-group">
+                <label>비밀번호 확인</label>
+                <input
+                  type="password"
+                  className={classNames('form-control', {
+                    'is-invalid': errors.password2,
+                  })}
+                  placeholder="비밀번호 확인"
+                  name="password2"
+                  value={isPassword2}
+                  onChange={onChangePassword2}
+                />
+                {errors.password2 && (
+                  <div className="invalid-feedback">{errors.password2}</div>
+                )}
+              </div>
+              <button type="submit" className="btn btn-primary">
+                확인
+              </button>
+            </form>
           </div>
         </div>
       </div>
-    );
-  }
-}
-
-Register.propTypes = {
-  registerUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
+    </div>
+  );
 };
 
-const mapStateToProps = state => ({
-  auth: state.auth,
-  errors: state.errors,
-});
-
-export default connect (mapStateToProps, {registerUser}) (
-  withRouter (Register)
-);
+export default Register;
