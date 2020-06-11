@@ -1,41 +1,43 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useHistory} from 'react-router';
 import classNames from 'classnames';
 import {useDispatch, useSelector} from 'react-redux';
 import {loginUser} from '../../actions/authActions';
 
-const Login = (props) => {
-  const [state, setState] = useState({email: '', password: '', errors: {}});
+const Login = () => {
+  const [isEmail, setEmail] = useState('');
+  const [isPassword, setPassword] = useState('');
 
-  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
+  const errors = useSelector((state) => state.errors);
 
   const history = useHistory();
+  const dispatch = useDispatch();
 
-  const {auth, errors} = useSelector((state) => state.auth);
+  const onChangeEmail = (e) => {
+    setEmail(e.target.value);
+  };
 
-  const {auth} = props;
-
-  const {errors} = props;
-
-  useEffect(() => {
-    if (auth.isAutenticated) {
-      history.push('/');
-    }
-  }, [errors, auth]);
-
-  const onChange = (e) => {
-    setState({[e.target.name]: e.target.value});
+  const onChangePassword = (e) => {
+    setPassword(e.target.value);
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
 
     const userData = {
-      email: state.email,
-      password: state.password,
+      email: isEmail,
+      password: isPassword,
     };
-    loginUser(userData);
+    console.log(userData);
+    dispatch(loginUser(userData, history));
   };
+
+  useEffect(() => {
+    if (auth.isAutenticated) {
+      history.push('/');
+    }
+  }, [errors, auth]);
 
   return (
     <div className="login">
@@ -53,8 +55,8 @@ const Login = (props) => {
                   })}
                   placeholder="example@studyplatform.com"
                   name="email"
-                  value={state.email}
-                  onChange={onChange}
+                  value={isEmail}
+                  onChange={onChangeEmail}
                 />
                 {errors.email && (
                   <div className="invalid-feedback">{errors.email}</div>
@@ -69,8 +71,8 @@ const Login = (props) => {
                   })}
                   placeholder="비밀번호"
                   name="password"
-                  value={state.password}
-                  onChange={onChange}
+                  value={isPassword}
+                  onChange={onChangePassword}
                 />
                 {errors.password && (
                   <div className="invalid-feedback">{errors.password}</div>

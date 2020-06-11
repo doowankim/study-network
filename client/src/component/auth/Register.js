@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {registerUser} from '../../actions/authActions';
 import {useHistory} from 'react-router-dom';
 
-const Register = () => {
+const Register = (props) => {
   const [isName, setName] = useState('');
   const [isEmail, setEmail] = useState('');
   const [isPassword, setPassword] = useState('');
@@ -43,12 +43,12 @@ const Register = () => {
     };
     dispatch(registerUser(newUser, history));
   };
-
+  const {registerData} = props;
   useEffect(() => {
     if (auth.isAuthenticated) {
-      history.push('/dashboard');
+      history.push('/');
     }
-  }, [errors]);
+  }, [registerData, errors]);
   return (
     <div className="register">
       <div className="container">
