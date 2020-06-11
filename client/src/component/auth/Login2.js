@@ -30,14 +30,14 @@ const Login = () => {
       password: isPassword,
     };
     console.log(userData);
-    dispatch(loginUser(userData, history));
+    dispatch(loginUser(userData));
   };
 
   useEffect(() => {
     if (auth.isAutenticated) {
       history.push('/');
     }
-  }, [errors, auth]);
+  }, [errors]);
 
   return (
     <div className="login">

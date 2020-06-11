@@ -43,6 +43,7 @@ const Register = (props) => {
     };
     dispatch(registerUser(newUser, history));
   };
+
   const {registerData} = props;
   useEffect(() => {
     if (auth.isAuthenticated) {
