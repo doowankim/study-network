@@ -1,117 +1,91 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import React, {useState, useEffect} from 'react';
+import {useHistory} from 'react-router';
 import classNames from 'classnames';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {loginUser} from '../../actions/authActions';
 
-class Login extends Component {
-  constructor() {
-    super();
-    this.state = {
-      email: '',
-      password: '',
-      errors: {},
+const Login = props => {
+  const [isEmail, setEmail] = useState ('');
+  const [isPassword, setPassword] = useState ('');
+
+  const auth = useSelector (state => state.auth);
+  console.log (auth);
+  const errors = useSelector (state => state.errors);
+
+  const history = useHistory ();
+  const dispatch = useDispatch ();
+
+  const onChangeEmail = e => {
+    setEmail (e.target.value);
+  };
+
+  const onChangePassword = e => {
+    setPassword (e.target.value);
+  };
+
+  const onSubmit = e => {
+    e.preventDefault ();
+
+    const loginUserData = {
+      email: isEmail,
+      password: isPassword,
     };
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
+    console.log (loginUserData);
+    dispatch (loginUser (loginUserData, history));
+  };
 
-  componentDidMount() {
-    if (this.props.auth.isAuthenticated) {
-      this.props.history.push('/');
+  useEffect (() => {
+    if (auth.isAutenticated) {
+      history.push ('/');
     }
-  }
+  });
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.auth.isAuthenticated) {
-      this.props.history.push('/');
-    }
-
-    if (nextProps.errors) {
-      this.setState({errors: nextProps.errors});
-    }
-  }
-
-  onChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
-  }
-
-  onSubmit(e) {
-    e.preventDefault();
-
-    const userData = {
-      email: this.state.email,
-      password: this.state.password,
-    };
-    console.log(userData);
-
-    this.props.loginUser(userData);
-  }
-
-  render() {
-    const {errors} = this.state;
-    return (
-      <div className="login">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8 m-auto">
-              <h1 className="display-10">로그인</h1>
-              <form noValidate onSubmit={this.onSubmit}>
-                <div className="form-group">
-                  <label>이메일 주소</label>
-                  <input
-                    type="email"
-                    className={classNames('form-control', {
-                      'is-invalid': errors.email,
-                    })}
-                    placeholder="example@studyplatform.com"
-                    name="email"
-                    value={this.state.email}
-                    onChange={this.onChange}
-                  />
-                  {errors.email && (
-                    <div className="invalid-feedback">{errors.email}</div>
-                  )}
-                </div>
-                <div className="form-group">
-                  <label>비밀번호</label>
-                  <input
-                    type="password"
-                    className={classNames('form-control', {
-                      'is-invalid': errors.password,
-                    })}
-                    placeholder="비밀번호"
-                    name="password"
-                    value={this.state.password}
-                    onChange={this.onChange}
-                  />
-                  {errors.password && (
-                    <div className="invalid-feedback">{errors.password}</div>
-                  )}
-                </div>
-                <button type="submit" className="btn btn-primary">
-                  확인
-                </button>
-              </form>
-            </div>
+  return (
+    <div className="login">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-8 m-auto">
+            <h1 className="display-10">로그인</h1>
+            <form noValidate onSubmit={onSubmit}>
+              <div className="form-group">
+                <label>이메일 주소</label>
+                <input
+                  type="email"
+                  className={classNames ('form-control', {
+                    'is-invalid': errors.email,
+                  })}
+                  placeholder="example@studyplatform.com"
+                  name="email"
+                  value={isEmail}
+                  onChange={onChangeEmail}
+                />
+                {errors.email &&
+                  <div className="invalid-feedback">{errors.email}</div>}
+              </div>
+              <div className="form-group">
+                <label>비밀번호</label>
+                <input
+                  type="password"
+                  className={classNames ('form-control', {
+                    'is-invalid': errors.password,
+                  })}
+                  placeholder="비밀번호"
+                  name="password"
+                  value={isPassword}
+                  onChange={onChangePassword}
+                />
+                {errors.password &&
+                  <div className="invalid-feedback">{errors.password}</div>}
+              </div>
+              <button type="submit" className="btn btn-primary">
+                확인
+              </button>
+            </form>
           </div>
         </div>
       </div>
-    );
-  }
-}
-
-Login.propTypes = {
-  loginUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
+    </div>
+  );
 };
 
-const mapStateToProps = (state) => ({
-  auth: state.auth,
-  errors: state.errors,
-});
-
-export default connect(mapStateToProps, {loginUser})(Login);
+export default Login;
