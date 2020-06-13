@@ -13,8 +13,6 @@ const Register = (props) => {
   const auth = useSelector((state) => state.auth);
   const errors = useSelector((state) => state.errors);
 
-  console.log(auth);
-
   const history = useHistory();
   const dispatch = useDispatch();
 

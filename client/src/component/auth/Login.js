@@ -9,7 +9,6 @@ const Login = (props) => {
   const [isPassword, setPassword] = useState('');
 
   const auth = useSelector((state) => state.auth);
-  console.log(auth);
   const errors = useSelector((state) => state.errors);
 
   const history = useHistory();

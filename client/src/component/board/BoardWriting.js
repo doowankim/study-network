@@ -1,72 +1,63 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import styled from "styled-components";
+import React, {useState} from 'react';
+import {useHistory} from 'react-router';
+import {useDispatch, useSelector} from 'react-redux';
+import {createPost} from '../../actions/postActions';
+import styled from 'styled-components';
 
-import { createPost } from "../../actions/postActions";
+const BoardWriting2 = () => {
+  const [isTitle, setTitle] = useState('');
+  const [isText, setText] = useState('');
 
-class BoardWriting extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            title: '',
-            text: '',
-            errors: {}
-        }
-        this.onChange = this.onChange.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
-    }
+  const errors = useSelector((state) => state.errors);
 
-    onChange(e) {
-        this.setState({ [e.target.name]: e.target.value })
-    }
+  const history = useHistory();
+  const dispatch = useDispatch();
 
-    onSubmit(e) {
-        e.preventDefault();
+  const onChangeTitle = (e) => {
+    setTitle(e.target.value);
+  };
 
-        const postData = {
-            title: this.state.title,
-            text: this.state.text
-        };
-        this.props.createPost(postData, this.props.history);
-        console.log(postData);
-    }
+  const onChangeText = (e) => {
+    setText(e.target.value);
+  };
 
-    render() {
-        const { errors } = this.state;
+  const onSubmit = (e) => {
+    e.preventDefault();
 
-        return (
-            <div>
-                <Form onSubmit={this.onSubmit}>
-                    <InputTitle
-                        name="title"
-                        placeholder="제목을 입력하세요"
-                        onChange={this.onChange}
-                        value={this.state.title}
-                        error={errors.title}
-                    />
-                    {errors.title && (
-                        <div className="invalid-feedback">{errors.title}</div>
-                    )}
-                    <InputText
-                        name="text"
-                        placeholder="자유롭게 작성해보세요"
-                        onChange={this.onChange}
-                        value={this.state.text}
-                        error={errors.text}
-                    />
-                    {errors.text && (
-                        <div className="invalid-feedback">{errors.text}</div>
-                    )}
-                    <div>
-                        <button type="submit" className="btn btn-primary">글 등록하기</button>
-                    </div>
-                </Form>
-            </div>
-        );
-    }
-}
+    const postData = {
+      title: isTitle,
+      text: isText,
+    };
+    dispatch(createPost(postData, history));
+  };
+  return (
+    <div>
+      <Form onSubmit={onSubmit}>
+        <InputTitle
+          name="title"
+          placeholder="제목을 입력하세요"
+          onChange={onChangeTitle}
+          value={isTitle}
+          error={errors.title}
+        />
+        {errors.title && <div className="invalid-feedback">{errors.title}</div>}
+        <InputText
+          name="text"
+          placeholder="자유롭게 작성해보세요"
+          onChange={onChangeText}
+          value={isText}
+          error={errors.text}
+        />
+        {errors.text && <div className="invalid-feedback">{errors.text}</div>}
+        <div>
+          <button type="submit" className="btn btn-primary">
+            글 등록하기
+          </button>
+        </div>
+      </Form>
+    </div>
+  );
+};
 
 const Form = styled.form`
   /* margin-left: 230px; */
@@ -106,16 +97,4 @@ const InputText = styled.input`
   margin-bottom: 20px;
 `;
 
-BoardWriting.propTypes = {
-    posts: PropTypes.object.isRequired,
-    errors: PropTypes.object.isRequired
-}
-
-const mapStateToProps = state => ({
-    posts: state.posts,
-    errors: state.errors
-});
-
-export default connect(mapStateToProps, { createPost })(
-    withRouter(BoardWriting)
-);
+export default BoardWriting2;
